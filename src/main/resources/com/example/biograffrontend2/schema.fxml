@@ -24,9 +24,10 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem fx:id="menuItemClose" mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" />
                         <MenuItem fx:id="addAdmin" mnemonicParsing="false" onAction="#addAdminButtonClicked" text="Add Admin User" />
                         <MenuItem fx:id="adminLogoutButton" mnemonicParsing="false" onAction="#adminLogoutButtonClicked" text="Logout" />
+                    <MenuItem fx:id="menuItemClose" mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" />
+                        <MenuItem fx:id="addMovieButton" mnemonicParsing="false" onAction="#addMovieButtonClicked" text="Add Movie" />
                   </items>
                 </Menu>
               </menus>

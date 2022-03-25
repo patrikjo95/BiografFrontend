@@ -3,6 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -36,8 +39,19 @@
       </HBox>
    </center>
    <top>
-      <VBox alignment="CENTER" prefHeight="116.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="74.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem fx:id="backButton" mnemonicParsing="false" text="Back" />
+                    <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" />
+                        <MenuItem fx:id="addMovieButton" mnemonicParsing="false" text="Add Movies" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
             <Label fx:id="loginErrorLabel" text="Här kommer varning när man skrivit fel" textAlignment="CENTER" textFill="RED" visible="false">
                <padding>
                   <Insets top="50.0" />

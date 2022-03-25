@@ -1,44 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biograffrontend2.Controller">
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biograffrontend2.Controller">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="891.0">
          <children>
-            <Button fx:id="buttonOne" mnemonicParsing="false" prefHeight="60.0" prefWidth="652.0" text="Film1 " />
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="646.0" text="Film 2" />
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="641.0" text="Film 3 " />
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="630.0" text="Film 4" />
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="656.0" text="Film 5" />
-         </children>
-      </VBox>
-   </center>
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem fx:id="bajsKnapp" mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" />
-                  <MenuItem fx:id="adminLogin" mnemonicParsing="false" onAction="#adminButtonClicked" text="Admin Login" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
-</BorderPane>
+            <ImageView fitHeight="138.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../Pictures/Hearthstone%20Screenshot%2009-18-21%2013.46.50.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="201.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../Pictures/Bra%20skit/ifk.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="138.0" fitWidth="202.0" layoutX="200.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../Pictures/Hearthstone%20Screenshot%2009-18-21%2013.46.50.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="114.0" fitWidth="694.0" layoutX="500.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../Pictures/Hearthstone%20Screenshot%2009-18-21%2013.46.50.png" />
+               </image>
+            </ImageView>
+            <MenuBar prefHeight="25.0" prefWidth="612.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem fx:id="adminLoginButton" mnemonicParsing="false" onAction="#adminButtonClicked" text="Admin Login" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children></AnchorPane>
+  </content>
+</ScrollPane>
