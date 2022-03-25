@@ -67,4 +67,10 @@ public class Controller {
         Application m = new Application();
         m.changeScene("addMovie.fxml");
     }
+
+    @FXML
+    public void movieButton1Clicked(ActionEvent event)throws IOException {
+        System.out.println("DU FÅR INTE KOLLA PÅ SPOODERMAN EDWIN!!!!!!!!!!!");
+    }
+
 }

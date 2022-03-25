@@ -47,7 +47,6 @@
                   <items>
                         <MenuItem fx:id="backButton" mnemonicParsing="false" text="Back" />
                     <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" />
-                        <MenuItem fx:id="addMovieButton" mnemonicParsing="false" text="Add Movies" />
                   </items>
                 </Menu>
               </menus>
