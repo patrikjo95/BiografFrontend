@@ -8,9 +8,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biograffrontend2.Controller">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biograffrontend2.Controller">
   <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="891.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="663.0" prefWidth="904.0">
          <children>
             <ImageView fitHeight="138.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -32,7 +32,7 @@
                   <Image url="@../../../../../../../../Pictures/Hearthstone%20Screenshot%2009-18-21%2013.46.50.png" />
                </image>
             </ImageView>
-            <MenuBar prefHeight="25.0" prefWidth="612.0">
+            <MenuBar prefHeight="25.0" prefWidth="1009.0">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
