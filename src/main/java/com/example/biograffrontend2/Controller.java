@@ -14,12 +14,14 @@ public class Controller {
     private TextField userNameField;
     @FXML
     private Label loginErrorLabel;
+    @FXML
+    private Label loginUserLabel;
 
     public Controller() {
     }
 
     @FXML
-    protected void menuItemCloseClicked() {
+    protected void closeButtonClicked() {
         System.exit(0);
     }
 
@@ -37,12 +39,26 @@ public class Controller {
     @FXML
     protected void loginButtonClicked(ActionEvent event) throws IOException {
         Application m = new Application();
-        if (this.userNameField.getText().equals("sexy") && this.passwordField.getText().equals("1234")) {
+        String loggedInUser = this.userNameField.getText();
+        if (loggedInUser.equals("sexy") && this.passwordField.getText().equals("1234")) {
             m.changeScene("schema.fxml");
+            //this.loginUserLabel.setText("Inloggad som: " + loggedInUser);
         } else {
             this.loginErrorLabel.setText("Puder dont accept your request ");
             this.loginErrorLabel.setVisible(true);
         }
+    }
 
+    @FXML
+    protected void adminLogoutButtonClicked(ActionEvent event)throws IOException{
+        Application m = new Application();
+        m.changeScene("adminLogin.fxml");
+    }
+
+
+    @FXML
+    public void addAdminButtonClicked(ActionEvent actionEvent)throws IOException {
+        Application m = new Application();
+        m.changeScene("createAdmin.fxml");
     }
 }

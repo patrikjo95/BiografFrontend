@@ -24,7 +24,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem fx:id="bajsKnapp" mnemonicParsing="false" onAction="#menuItemCloseClicked" text="Close" />
+              <MenuItem fx:id="bajsKnapp" mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" />
                   <MenuItem fx:id="adminLogin" mnemonicParsing="false" onAction="#adminButtonClicked" text="Admin Login" />
             </items>
           </Menu>
