@@ -38,7 +38,7 @@
    <top>
       <VBox alignment="CENTER" prefHeight="116.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="loginErrorLabel" opacity="0.0" text="Här kommer varning när man skrivit fel" textAlignment="CENTER" textFill="RED">
+            <Label fx:id="loginErrorLabel" text="Här kommer varning när man skrivit fel" textAlignment="CENTER" textFill="RED" visible="false">
                <padding>
                   <Insets top="50.0" />
                </padding>

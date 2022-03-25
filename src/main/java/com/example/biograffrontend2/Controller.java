@@ -41,7 +41,7 @@ public class Controller {
             m.changeScene("schema.fxml");
         } else {
             this.loginErrorLabel.setText("Puder dont accept your request ");
-            this.loginErrorLabel.setOpacity(1);
+            this.loginErrorLabel.setVisible(true);
         }
 
     }
