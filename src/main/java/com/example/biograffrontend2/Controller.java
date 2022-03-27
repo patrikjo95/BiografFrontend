@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
@@ -16,9 +18,12 @@ public class Controller {
     private Label loginErrorLabel;
     @FXML
     private Label loginUserLabel;
+    @FXML
+    private ImageView movie1Image;
 
     public Controller() {
     }
+
 
     @FXML
     protected void closeButtonClicked() {
@@ -69,8 +74,14 @@ public class Controller {
     }
 
     @FXML
-    public void movieButton1Clicked(ActionEvent event)throws IOException {
+    public void movieButton1Clicked(MouseEvent event)throws IOException {
+        System.out.println("Du vet vad som händer i den här filmen va?");
+    }
+
+    @FXML
+    public void movieButton2Clicked(MouseEvent event)throws IOException {
         System.out.println("DU FÅR INTE KOLLA PÅ SPOODERMAN EDWIN!!!!!!!!!!!");
     }
+
 
 }
