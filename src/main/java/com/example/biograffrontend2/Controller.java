@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -19,7 +20,7 @@ public class Controller {
     @FXML
     private Label loginUserLabel;
     @FXML
-    private ImageView movie1Image;
+    private ImageView movieImage;
 
     public Controller() {
     }
@@ -62,26 +63,40 @@ public class Controller {
     }
 
     @FXML
-    public void addAdminButtonClicked(ActionEvent event)throws IOException {
+    protected void addAdminButtonClicked(ActionEvent event)throws IOException {
         Application m = new Application();
         m.changeScene("createAdmin.fxml");
     }
 
     @FXML
-    public void addMovieButtonClicked(ActionEvent event)throws IOException {
+    protected void addMovieButtonClicked(ActionEvent event)throws IOException {
         Application m = new Application();
         m.changeScene("addMovie.fxml");
     }
 
     @FXML
-    public void movieButton1Clicked(MouseEvent event)throws IOException {
+    protected void movieButton1Clicked(MouseEvent event)throws IOException {
         System.out.println("Du vet vad som händer i den här filmen va?");
     }
 
     @FXML
-    public void movieButton2Clicked(MouseEvent event)throws IOException {
+    protected void movieButton2Clicked(MouseEvent event)throws IOException {
         System.out.println("DU FÅR INTE KOLLA PÅ SPOODERMAN EDWIN!!!!!!!!!!!");
     }
 
+    @FXML
+    protected void movieMouseEnteredEvent(MouseEvent event){
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setBrightness(+0.1);
+        movieImage.setEffect(colorAdjust);
+        System.out.println("hej");
+    }
 
+    @FXML
+    protected void movieMouseExitedEvent(MouseEvent event){
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setBrightness(-0.1);
+        movieImage.setEffect(colorAdjust);
+        System.out.println("då");
+    }
 }
