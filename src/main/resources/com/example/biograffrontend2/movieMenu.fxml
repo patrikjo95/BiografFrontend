@@ -19,35 +19,25 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
                         <MenuItem fx:id="adminLoginButton" mnemonicParsing="false" onAction="#adminButtonClicked" text="Admin Login" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" />
                   </items>
                 </Menu>
               </menus>
             </MenuBar>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" AnchorPane.topAnchor="25.0">
                <children>
-                  <ImageView fx:id="movieImage" fitHeight="408.0" fitWidth="274.0" onMouseClicked="#movieButton1Clicked" onMouseEntered="#movieMouseEnteredEvent" onMouseExited="#movieMouseExitedEvent" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="brokebackImage" fitHeight="408.0" fitWidth="274.0" onMouseClicked="#movieButtonClicked" onMouseEntered="#movieMouseEnteredEvent" onMouseExited="#movieMouseExitedEvent" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:\C:\Users\Puder\IdeaProjects\BiografFrontend\src\main\java\com\example\biograffrontend2\Movies\Brokeback_mountain.jpg" />
+                        <Image url="@../../../Movies/Brokeback_mountain.jpg" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="movieImage2" fitHeight="500.0" fitWidth="270.0" onMouseClicked="#movieButton2Clicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="spidermanImage" fitHeight="500.0" fitWidth="270.0" onMouseClicked="#movieButtonClicked" onMouseEntered="#movieMouseEnteredEvent" onMouseExited="#movieMouseExitedEvent" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:\C:\Users\Puder\IdeaProjects\BiografFrontend\src\main\java\com\example\biograffrontend2\Movies\spiderman.jpg" />
+                        <Image url="@../../../Movies/spiderman.jpg" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -56,17 +46,17 @@
                         <Insets />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="407.0" fitWidth="279.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="snatchImage" fitHeight="407.0" fitWidth="279.0" onMouseClicked="#movieButtonClicked" onMouseEntered="#movieMouseEnteredEvent" onMouseExited="#movieMouseExitedEvent" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:\C:\Users\Puder\IdeaProjects\BiografFrontend\src\main\java\com\example\biograffrontend2\Movies\snatch.jpg" />
+                        <Image url="@../../../Movies/snatch.jpg" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="408.0" fitWidth="289.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="theGentlemanImage" fitHeight="408.0" fitWidth="289.0" onMouseClicked="#movieButtonClicked" onMouseEntered="#movieMouseEnteredEvent" onMouseExited="#movieMouseExitedEvent" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:\C:\Users\Puder\IdeaProjects\BiografFrontend\src\main\java\com\example\biograffrontend2\Movies\the gentlemen.jpg" />
+                        <Image url="@../../../Movies/the%20gentlemen.jpg" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />

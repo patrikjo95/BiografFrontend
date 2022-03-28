@@ -20,9 +20,11 @@ public class Controller {
     @FXML
     private Label loginUserLabel;
     @FXML
-    private ImageView movieImage;
+    private ImageView brokebackImage, spidermanImage, snatchImage, theGentlemanImage;
+
 
     public Controller() {
+
     }
 
 
@@ -75,28 +77,34 @@ public class Controller {
     }
 
     @FXML
-    protected void movieButton1Clicked(MouseEvent event)throws IOException {
-        System.out.println("Du vet vad som händer i den här filmen va?");
-    }
-
-    @FXML
-    protected void movieButton2Clicked(MouseEvent event)throws IOException {
-        System.out.println("DU FÅR INTE KOLLA PÅ SPOODERMAN EDWIN!!!!!!!!!!!");
+    protected void movieButtonClicked(MouseEvent event)throws IOException {
+        Application m = new Application();
+        m.changeScene("movieSchedule.fxml");
     }
 
     @FXML
     protected void movieMouseEnteredEvent(MouseEvent event){
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setBrightness(+0.1);
-        movieImage.setEffect(colorAdjust);
-        System.out.println("hej");
+        ImageView currentImage = (ImageView) event.getSource();
+        currentImage.setEffect(colorAdjust);
+
     }
 
     @FXML
     protected void movieMouseExitedEvent(MouseEvent event){
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setBrightness(-0.1);
-        movieImage.setEffect(colorAdjust);
-        System.out.println("då");
+        ImageView currentImage = (ImageView) event.getSource();
+        currentImage.setEffect(colorAdjust);
     }
+
+    @FXML
+    protected void movieSchemaBackButtonClicked(ActionEvent event)throws IOException{
+        Application m = new Application();
+        m.changeScene("movieMenu.fxml");
+    }
+
+
+
 }
