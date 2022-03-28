@@ -8,10 +8,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+import java.sql.*;
 
 import java.io.IOException;
 
 public class Controller {
+    static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/biograf";
+    static final String USER = "newuser1";
+    static final String PASS = "password";
+
     @FXML
     private TextField passwordField;
     @FXML
@@ -120,6 +126,8 @@ public class Controller {
         Application m = new Application();
         m.changeScene("mainMenu.fxml");
     }
+
+
 
     @FXML
     private void addUser() {
