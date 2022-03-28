@@ -9,35 +9,9 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biograffrontend2.Controller">
-   <center>
-      <HBox alignment="CENTER" prefHeight="273.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextField fx:id="userNameField" alignment="CENTER" promptText="Username">
-               <HBox.margin>
-                  <Insets bottom="150.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </TextField>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="284.0" prefWidth="62.0">
-               <children>
-                  <Button fx:id="createAdminButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Submit" textAlignment="CENTER">
-                     <VBox.margin>
-                        <Insets bottom="150.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-            </VBox>
-            <PasswordField fx:id="passwordField" alignment="CENTER" promptText="Password">
-               <HBox.margin>
-                  <Insets bottom="150.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </PasswordField>
-         </children>
-      </HBox>
-   </center>
    <top>
       <VBox alignment="CENTER" prefHeight="98.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -51,7 +25,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <Label fx:id="loginErrorLabel" text="This User Already Exists" textAlignment="CENTER" textFill="RED" visible="false">
+            <Label fx:id="adminLoginLabel" text="FELMEDDELANDE" textAlignment="CENTER" textFill="RED" visible="false">
                <padding>
                   <Insets top="50.0" />
                </padding>
@@ -59,4 +33,28 @@
          </children>
       </VBox>
    </top>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="adminNameField" promptText="Name" />
+            <TextField fx:id="adminPhoneField" promptText="Phone" />
+            <TextField fx:id="adminUsernameField" promptText="Username" />
+            <PasswordField fx:id="adminPassword1Field" promptText="Password" />
+            <PasswordField fx:id="adminPassword2Field" promptText="Password" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets left="40.0" />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+   <center>
+      <Button fx:id="adminSubmitButton" mnemonicParsing="false" onMouseClicked="#addUser" prefHeight="25.0" prefWidth="123.0" text="Submit" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="150.0" right="140.0" />
+         </BorderPane.margin>
+      </Button>
+   </center>
 </BorderPane>

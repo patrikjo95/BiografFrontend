@@ -2,6 +2,7 @@ package com.example.biograffrontend2;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
@@ -20,7 +21,19 @@ public class Controller {
     @FXML
     private Label loginUserLabel;
     @FXML
-    private ImageView brokebackImage, spidermanImage, snatchImage, theGentlemanImage;
+    private TextField adminNameField;
+    @FXML
+    private TextField adminPhoneField;
+    @FXML
+    private TextField adminUsernameField;
+    @FXML
+    private TextField adminPassword1Field;
+    @FXML
+    private TextField adminPassword2Field;
+    @FXML
+    private Label adminLoginLabel;
+
+
 
 
     public Controller() {
@@ -47,16 +60,18 @@ public class Controller {
     @FXML
     protected void loginButtonClicked(ActionEvent event) throws IOException {
         Application m = new Application();
-        String loggedInUser = this.userNameField.getText();
-        /*if (loggedInUser.equals("sexy") && this.passwordField.getText().equals("1234")) {
+        //TODO fixa så att loginUserLabel inte är null
+        /*String loggedInUser = this.userNameField.getText();
+        if (loggedInUser.equals("sexy") && this.passwordField.getText().equals("1234")) {
             m.changeScene("schema.fxml");
-            //this.loginUserLabel.setText("Inloggad som: " + loggedInUser);
+            loginUserLabel.setText("Inloggad som: " + loggedInUser);
         } else {
             this.loginErrorLabel.setText("Puder dont accept your request ");
             this.loginErrorLabel.setVisible(true);
         }*/
         m.changeScene("schema.fxml");
     }
+
 
     @FXML
     protected void adminLogoutButtonClicked(ActionEvent event)throws IOException{
@@ -91,6 +106,7 @@ public class Controller {
 
     }
 
+
     @FXML
     protected void movieMouseExitedEvent(MouseEvent event){
         ColorAdjust colorAdjust = new ColorAdjust();
@@ -102,9 +118,26 @@ public class Controller {
     @FXML
     protected void movieSchemaBackButtonClicked(ActionEvent event)throws IOException{
         Application m = new Application();
-        m.changeScene("movieMenu.fxml");
+        m.changeScene("mainMenu.fxml");
     }
 
+    @FXML
+    private void addUser() {
+        String Query = "INSERT INTO staff (staff_name, staff_phone, staff_username, staff_password) VALUES " +"('"+ adminNameField.getText()+"', " + "'"+adminPhoneField.getText()+"', "  + "'"+adminUsernameField.getText()+"', " + "'"+adminPassword1Field.getText()+"')";
+        // System.out.println(Query);
+
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(Query);
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        adminLoginLabel.setText("You did it you crazy bastard, you're in " + adminNameField.getText());
+        adminLoginLabel.setVisible(true);
+
+    }
 
 
 }
