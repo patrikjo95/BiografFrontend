@@ -52,9 +52,6 @@ public class Controller {
         System.exit(0);
     }
 
-    @FXML
-    protected void bokaButtonClicked() throws IOException {
-    }
 
     @FXML
     protected void adminButtonClicked(ActionEvent event) throws IOException {
@@ -67,8 +64,8 @@ public class Controller {
     protected void loginButtonClicked(ActionEvent event) throws IOException {
         Application m = new Application();
         //TODO fixa så att loginUserLabel inte är null
-        /*String loggedInUser = this.userNameField.getText();
-        if (loggedInUser.equals("sexy") && this.passwordField.getText().equals("1234")) {
+        String loggedInUser = this.userNameField.getText();
+        /*if (loggedInUser.equals("sexy") && this.passwordField.getText().equals("1234")) {
             m.changeScene("schema.fxml");
             loginUserLabel.setText("Inloggad som: " + loggedInUser);
         } else {
