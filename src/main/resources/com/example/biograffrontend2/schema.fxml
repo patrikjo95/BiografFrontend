@@ -8,10 +8,11 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biograffrontend2.Controller">
    <center>
-      <DatePicker fx:id="datePicker" BorderPane.alignment="CENTER">
+      <DatePicker fx:id="datePicker" onAction="#getDate" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="150.0" />
          </BorderPane.margin>
@@ -33,6 +34,14 @@
               </menus>
             </MenuBar>
             <Label fx:id="loginUserLabel" text="Inloggad som: " />
+            <Label fx:id="workingLabel" text="Jobbar mellan 09:00 - 14:00" visible="false">
+               <padding>
+                  <Insets left="200.0" top="100.0" />
+               </padding>
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
          </children>
       </VBox>
    </top>

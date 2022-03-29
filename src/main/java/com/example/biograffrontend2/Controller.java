@@ -2,16 +2,18 @@ package com.example.biograffrontend2;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
+
 import java.sql.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.MonthDay;
 
 public class Controller {
     static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/biograf";
@@ -38,8 +40,10 @@ public class Controller {
     private TextField adminPassword2Field;
     @FXML
     private Label adminLoginLabel;
-
-
+    @FXML
+    private DatePicker datePicker;
+    @FXML
+    private Label workingLabel;
 
 
     public Controller() {
@@ -125,10 +129,9 @@ public class Controller {
     }
 
 
-
     @FXML
     private void addUser() {
-        String Query = "INSERT INTO staff (staff_name, staff_phone, staff_username, staff_password) VALUES " +"('"+ adminNameField.getText()+"', " + "'"+adminPhoneField.getText()+"', "  + "'"+adminUsernameField.getText()+"', " + "'"+adminPassword1Field.getText()+"')";
+        String Query = "INSERT INTO staff (name, phone, userName, password) VALUES " +"('"+ adminNameField.getText()+"', " + "'"+adminPhoneField.getText()+"', "  + "'"+adminUsernameField.getText()+"', " + "'"+adminPassword1Field.getText()+"')";
         // System.out.println(Query);
 
         try {
@@ -141,8 +144,18 @@ public class Controller {
         }
         adminLoginLabel.setText("You did it you crazy bastard, you're in " + adminNameField.getText());
         adminLoginLabel.setVisible(true);
+    }
+
+    @FXML
+    private void getDate(){
+        LocalDate localDate = datePicker.getValue();
+        workingLabel.setVisible(true);
+        //TODO denna skall hämta ifall man jobbar eller ej, visa vilken tid man jobbar samt var...
+        workingLabel.setText(String.valueOf(localDate));
+
 
     }
+
 
 
 }
