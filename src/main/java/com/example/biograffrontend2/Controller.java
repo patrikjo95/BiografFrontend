@@ -2,6 +2,7 @@ package com.example.biograffrontend2;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.*;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
@@ -13,7 +14,12 @@ import java.sql.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.MonthDay;
+import java.time.temporal.TemporalAccessor;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Controller {
     static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/biograf";
@@ -70,42 +76,42 @@ public class Controller {
         //TODO fixa så att loginUserLabel inte är null
         String loggedInUser = this.userNameField.getText();
         /*if (loggedInUser.equals("sexy") && this.passwordField.getText().equals("1234")) {
-            m.changeScene("schema.fxml");
+            m.changeScene("adminSchema.fxml");
             loginUserLabel.setText("Inloggad som: " + loggedInUser);
         } else {
             this.loginErrorLabel.setText("Puder dont accept your request ");
             this.loginErrorLabel.setVisible(true);
         }*/
-        m.changeScene("schema.fxml");
+        m.changeScene("adminSchema.fxml");
     }
 
 
     @FXML
-    protected void adminLogoutButtonClicked(ActionEvent event)throws IOException{
+    protected void adminLogoutButtonClicked(ActionEvent event) throws IOException {
         Application m = new Application();
         m.changeScene("adminLogin.fxml");
     }
 
     @FXML
-    protected void addAdminButtonClicked(ActionEvent event)throws IOException {
+    protected void addAdminButtonClicked(ActionEvent event) throws IOException {
         Application m = new Application();
         m.changeScene("createAdmin.fxml");
     }
 
     @FXML
-    protected void addMovieButtonClicked(ActionEvent event)throws IOException {
+    protected void addMovieButtonClicked(ActionEvent event) throws IOException {
         Application m = new Application();
         m.changeScene("addMovie.fxml");
     }
 
     @FXML
-    protected void movieButtonClicked(MouseEvent event)throws IOException {
+    protected void movieButtonClicked(MouseEvent event) throws IOException {
         Application m = new Application();
         m.changeScene("movieSchedule.fxml");
     }
 
     @FXML
-    protected void movieMouseEnteredEvent(MouseEvent event){
+    protected void movieMouseEnteredEvent(MouseEvent event) {
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setBrightness(+0.1);
         ImageView currentImage = (ImageView) event.getSource();
@@ -115,7 +121,7 @@ public class Controller {
 
 
     @FXML
-    protected void movieMouseExitedEvent(MouseEvent event){
+    protected void movieMouseExitedEvent(MouseEvent event) {
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setBrightness(-0.1);
         ImageView currentImage = (ImageView) event.getSource();
@@ -123,7 +129,7 @@ public class Controller {
     }
 
     @FXML
-    protected void movieSchemaBackButtonClicked(ActionEvent event)throws IOException{
+    protected void movieSchemaBackButtonClicked(ActionEvent event) throws IOException {
         Application m = new Application();
         m.changeScene("mainMenu.fxml");
     }
@@ -131,7 +137,7 @@ public class Controller {
 
     @FXML
     private void addUser() {
-        String Query = "INSERT INTO staff (name, phone, userName, password) VALUES " +"('"+ adminNameField.getText()+"', " + "'"+adminPhoneField.getText()+"', "  + "'"+adminUsernameField.getText()+"', " + "'"+adminPassword1Field.getText()+"')";
+        String Query = "INSERT INTO staff (name, phone, userName, password) VALUES " + "('" + adminNameField.getText() + "', " + "'" + adminPhoneField.getText() + "', " + "'" + adminUsernameField.getText() + "', " + "'" + adminPassword1Field.getText() + "')";
         // System.out.println(Query);
 
         try {
@@ -147,15 +153,20 @@ public class Controller {
     }
 
     @FXML
-    private void getDate(){
+    private void getDate() {
         LocalDate localDate = datePicker.getValue();
         workingLabel.setVisible(true);
         //TODO denna skall hämta ifall man jobbar eller ej, visa vilken tid man jobbar samt var...
         workingLabel.setText(String.valueOf(localDate));
 
+        List<LocalDate> exempelDagar = new ArrayList<>();
+
+        exempelDagar.add(LocalDate.of(2022, Month.MARCH, 30));
+        exempelDagar.add(LocalDate.of(2022, Month.MARCH, 29));
+        exempelDagar.add(LocalDate.of(2022, Month.MARCH, 28));
+        exempelDagar.add(LocalDate.of(2022, Month.APRIL, 1));
+
+
 
     }
-
-
-
 }
