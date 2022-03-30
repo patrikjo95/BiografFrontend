@@ -177,11 +177,11 @@ public class Controller {
         workingLabel.setText(String.valueOf(localDate));
 
         List<LocalDate> exempelDagar = new ArrayList<>();
-
         exempelDagar.add(LocalDate.of(2022, Month.MARCH, 30));
         exempelDagar.add(LocalDate.of(2022, Month.MARCH, 29));
         exempelDagar.add(LocalDate.of(2022, Month.MARCH, 28));
         exempelDagar.add(LocalDate.of(2022, Month.APRIL, 1));
+        System.out.println(exempelDagar);
 
         datePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
             @Override
