@@ -119,7 +119,6 @@ public class Controller {
 
     }
 
-
     @FXML
     protected void movieMouseExitedEvent(MouseEvent event) {
         ColorAdjust colorAdjust = new ColorAdjust();
@@ -132,6 +131,24 @@ public class Controller {
     protected void movieSchemaBackButtonClicked(ActionEvent event) throws IOException {
         Application m = new Application();
         m.changeScene("mainMenu.fxml");
+    }
+
+    @FXML
+    protected void addMovieBackButtonClicked(ActionEvent event)throws IOException{
+        Application m = new Application();
+        m.changeScene("adminSchema.fxml");
+    }
+
+    @FXML
+    protected void adminLoginBackButtonClicked(ActionEvent event)throws IOException{
+        Application m = new Application();
+        m.changeScene("mainMenu.fxml");
+    }
+
+    @FXML
+    protected void createAdminBackButtonClicked(ActionEvent event)throws IOException{
+        Application m = new Application();
+        m.changeScene("adminSchema.fxml");
     }
 
 
@@ -156,7 +173,7 @@ public class Controller {
     private void getDate() {
         LocalDate localDate = datePicker.getValue();
         workingLabel.setVisible(true);
-        //TODO denna skall hämta ifall man jobbar eller ej, visa vilken tid man jobbar samt var...
+        //TODO denna skall hämta ifall man jobbar eller ej, visa vilken tid man jobbar samt var... DateCellFactory funkar inte...
         workingLabel.setText(String.valueOf(localDate));
 
         List<LocalDate> exempelDagar = new ArrayList<>();
@@ -166,7 +183,23 @@ public class Controller {
         exempelDagar.add(LocalDate.of(2022, Month.MARCH, 28));
         exempelDagar.add(LocalDate.of(2022, Month.APRIL, 1));
 
+        datePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
+            @Override
+            public DateCell call(DatePicker datePicker) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
 
+                        if (!empty && item != null) {
+                            if (exempelDagar.contains(item)) {
+                                this.setStyle("-fx-background-color: pink");
+                            }
+                        }
+                    }
+                };
+            }
+        });
 
     }
 }

@@ -14,7 +14,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Back" />
+                  <MenuItem fx:id="addMovieBackButton" mnemonicParsing="false" onAction="#addMovieBackButtonClicked" text="Back" />
               <MenuItem mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" />
             </items>
           </Menu>
