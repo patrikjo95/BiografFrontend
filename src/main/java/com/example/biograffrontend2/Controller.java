@@ -185,7 +185,7 @@ public class Controller {
 
         datePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
             @Override
-            public DateCell call(DatePicker datePicker) {
+            public DateCell call(DatePicker param) {
                 return new DateCell() {
                     @Override
                     public void updateItem(LocalDate item, boolean empty) {
