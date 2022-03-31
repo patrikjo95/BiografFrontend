@@ -1,10 +1,13 @@
 package com.example.biograffrontend2;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.value.ObservableObjectValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.*;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -63,6 +66,7 @@ public class Controller {
     }
 
 
+
     @FXML
     protected void adminButtonClicked(ActionEvent event) throws IOException {
         Application a = new Application();
@@ -106,7 +110,19 @@ public class Controller {
 
     @FXML
     protected void movieButtonClicked(MouseEvent event) throws IOException {
+        ImageView currentImage = (ImageView) event.getSource();
+        System.out.println(currentImage);
         Application m = new Application();
+
+        if(currentImage.getId().equals("brokebackImage")){
+            System.out.println("brokeback");
+        }if(currentImage.getId().equals("spidermanImage")){
+            System.out.println("Spiderman");
+        }if(currentImage.getId().equals("snatchImage")){
+            System.out.println("Snatch");
+        }if(currentImage.getId().equals("theGentlemenImage")){
+            System.out.println("The Gentlemen");
+        }
         m.changeScene("movieSchedule.fxml");
     }
 
@@ -125,6 +141,7 @@ public class Controller {
         colorAdjust.setBrightness(-0.1);
         ImageView currentImage = (ImageView) event.getSource();
         currentImage.setEffect(colorAdjust);
+
     }
 
     @FXML
@@ -202,4 +219,10 @@ public class Controller {
         });
 
     }
+
+    private ImageView getCurrentImage(MouseEvent event){
+
+        return null;
+    }
+
 }
