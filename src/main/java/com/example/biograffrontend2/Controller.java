@@ -115,7 +115,12 @@ public class Controller {
         Application m = new Application();
 
         if(currentImage.getId().equals("brokebackImage")){
-            System.out.println("brokeback");
+            new Thread(()->{
+                ConnectionManager cm = new ConnectionManager();
+
+                String response = cm.sendRequest();
+                System.out.println("brokeback");
+            }).start();
         }if(currentImage.getId().equals("spidermanImage")){
             System.out.println("Spiderman");
         }if(currentImage.getId().equals("snatchImage")){
@@ -124,6 +129,7 @@ public class Controller {
             System.out.println("The Gentlemen");
         }
         m.changeScene("movieSchedule.fxml");
+
     }
 
     @FXML
@@ -171,7 +177,7 @@ public class Controller {
 
     @FXML
     private void addUser() {
-        String Query = "INSERT INTO staff (name, phone, userName, password) VALUES " + "('" + adminNameField.getText() + "', " + "'" + adminPhoneField.getText() + "', " + "'" + adminUsernameField.getText() + "', " + "'" + adminPassword1Field.getText() + "')";
+        /*String Query = "INSERT INTO staff (name, phone, userName, password) VALUES " + "('" + adminNameField.getText() + "', " + "'" + adminPhoneField.getText() + "', " + "'" + adminUsernameField.getText() + "', " + "'" + adminPassword1Field.getText() + "')";
         // System.out.println(Query);
 
         try {
@@ -183,7 +189,8 @@ public class Controller {
             throwables.printStackTrace();
         }
         adminLoginLabel.setText("You did it you crazy bastard, you're in " + adminNameField.getText());
-        adminLoginLabel.setVisible(true);
+        adminLoginLabel.setVisible(true);*/
+
     }
 
     @FXML
