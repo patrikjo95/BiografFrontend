@@ -179,24 +179,13 @@ public class Controller {
     private void addUser() {
         new Thread(()->{
             ConnectionManager cm = new ConnectionManager();
+            String adminName = adminNameField.getText();
+            String phone = adminPhoneField.getText();
+            String username = adminUsernameField.getText();
+            String password = adminPassword1Field.getText();
 
-            cm.sendRequest("addStaff");
+            cm.sendRequest("addStaff/?adminName=" + adminName + "&phone=" +phone + "&username=" + username + "&password=" + password);
         }).start();
-
-
-        /*String Query = "INSERT INTO staff (name, phone, userName, password) VALUES " + "('" + adminNameField.getText() + "', " + "'" + adminPhoneField.getText() + "', " + "'" + adminUsernameField.getText() + "', " + "'" + adminPassword1Field.getText() + "')";
-        // System.out.println(Query);
-
-        try {
-            Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(Query);
-            statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        adminLoginLabel.setText("You did it you crazy bastard, you're in " + adminNameField.getText());
-        adminLoginLabel.setVisible(true);*/
 
     }
 
