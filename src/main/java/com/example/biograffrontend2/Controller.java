@@ -177,6 +177,13 @@ public class Controller {
 
     @FXML
     private void addUser() {
+        new Thread(()->{
+            ConnectionManager cm = new ConnectionManager();
+
+            cm.sendRequest("addStaff");
+        }).start();
+
+
         /*String Query = "INSERT INTO staff (name, phone, userName, password) VALUES " + "('" + adminNameField.getText() + "', " + "'" + adminPhoneField.getText() + "', " + "'" + adminUsernameField.getText() + "', " + "'" + adminPassword1Field.getText() + "')";
         // System.out.println(Query);
 
