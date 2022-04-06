@@ -118,7 +118,7 @@ public class Controller {
             new Thread(()->{
                 ConnectionManager cm = new ConnectionManager();
 
-                String response = cm.sendRequest();
+                String response = cm.sendRequest("/home");
                 System.out.println("brokeback");
             }).start();
         }if(currentImage.getId().equals("spidermanImage")){

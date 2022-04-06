@@ -6,13 +6,12 @@ import java.net.URL;
 
 public class ConnectionManager {
 
-    private HttpURLConnection connection;
 
-    public String sendRequest() {
+    public String sendRequest(String request) {
 
         try {
-            URL url = new URL("http://localhost:8080/hello");
-            connection = (HttpURLConnection) url.openConnection();
+            URL url = new URL("http://localhost:8080/" + request);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
             connection.setConnectTimeout(5000);
