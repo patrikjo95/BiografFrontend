@@ -1,28 +1,18 @@
 package com.example.biograffrontend2;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.value.ObservableObjectValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Point2D;
 import javafx.scene.control.*;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import javafx.util.Callback;
-
-import java.sql.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.MonthDay;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Controller {
     static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/biograf";
@@ -118,7 +108,7 @@ public class Controller {
             new Thread(()->{
                 ConnectionManager cm = new ConnectionManager();
 
-                String response = cm.sendRequest("test");
+                String response = cm.sendGetRequest("test");
                 System.out.println("brokeback");
             }).start();
         }if(currentImage.getId().equals("spidermanImage")){
@@ -185,7 +175,8 @@ public class Controller {
                 String username = adminUsernameField.getText();
                 String password = adminPassword1Field.getText();
 
-                cm.sendRequest("addStaff/?adminName=" + adminName + "&phone=" + phone + "&username=" + username + "&password=" + password);
+                cm.sendGetRequest("addStaff/?adminName=" + adminName + "&phone=" + phone + "&username=" + username + "&password=" + password);
+                adminLoginLabel.setVisible(false);
             }).start();
         }else{
             adminLoginLabel.setText("Password doesn't match");
