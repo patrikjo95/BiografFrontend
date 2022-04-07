@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Controller {
     static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/biograf";
@@ -44,6 +45,8 @@ public class Controller {
     @FXML
     private Label workingLabel;
 
+    public String response;
+
 
     public Controller() {
 
@@ -73,7 +76,7 @@ public class Controller {
             m.changeScene("adminSchema.fxml");
             loginUserLabel.setText("Inloggad som: " + loggedInUser);
         } else {
-            this.loginErrorLabel.setText("Puder dont accept your request ");
+            this.loginErrorLabel.setText("Puder dont accept your response ");
             this.loginErrorLabel.setVisible(true);
         }*/
         m.changeScene("adminSchema.fxml");
@@ -166,23 +169,38 @@ public class Controller {
 
 
     @FXML
-    private void addUser() {
-        if(adminPassword1Field.getText().equals(adminPassword2Field.getText())) {
-            new Thread(() -> {
-                ConnectionManager cm = new ConnectionManager();
-                String adminName = adminNameField.getText();
-                String phone = adminPhoneField.getText();
-                String username = adminUsernameField.getText();
-                String password = adminPassword1Field.getText();
+    private void addAdminButtonClicked(){
+        new Thread(() -> {
+            ConnectionManager cm = new ConnectionManager();
+            String adminName = adminNameField.getText();
+            String phone = adminPhoneField.getText();
+            String username = adminUsernameField.getText();
+            String password = adminPassword1Field.getText();
 
-                cm.sendGetRequest("addStaff/?adminName=" + adminName + "&phone=" + phone + "&username=" + username + "&password=" + password);
-                adminLoginLabel.setVisible(false);
-            }).start();
-        }else{
-            adminLoginLabel.setText("Password doesn't match");
-            adminLoginLabel.setVisible(true);
-        }
+            response = cm.sendGetRequest("addStaff/?adminName=" + adminName + "&phone=" + phone + "&username=" + username + "&password=" + password);
+            adminLoginLabel.setVisible(false);
 
+            if(adminPassword1Field.getText().equals(adminPassword2Field.getText())) {
+                Application m = new Application();
+                try {
+                    m.changeScene("adminSchema.fxml");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else if (!Objects.equals(adminPassword1Field.getText(), adminPassword2Field.getText())){
+                adminLoginLabel.setText("Incorrect username or password, please try again.");
+                adminLoginLabel.setVisible(true);
+
+            }else if(Objects.equals(response, "Felaktigt telefonnummer")){
+                adminLoginLabel.setText("Incorrect phone number");
+                adminLoginLabel.setVisible(true);
+
+            }else if(Objects.equals(response, "Double user")){
+                adminLoginLabel.setText("That user already exists");
+                adminLoginLabel.setVisible(true);
+
+            }
+        }).start();
     }
 
     @FXML
