@@ -177,15 +177,20 @@ public class Controller {
 
     @FXML
     private void addUser() {
-        new Thread(()->{
-            ConnectionManager cm = new ConnectionManager();
-            String adminName = adminNameField.getText();
-            String phone = adminPhoneField.getText();
-            String username = adminUsernameField.getText();
-            String password = adminPassword1Field.getText();
+        if(adminPassword1Field.getText().equals(adminPassword2Field.getText())) {
+            new Thread(() -> {
+                ConnectionManager cm = new ConnectionManager();
+                String adminName = adminNameField.getText();
+                String phone = adminPhoneField.getText();
+                String username = adminUsernameField.getText();
+                String password = adminPassword1Field.getText();
 
-            cm.sendRequest("addStaff/?adminName=" + adminName + "&phone=" +phone + "&username=" + username + "&password=" + password);
-        }).start();
+                cm.sendRequest("addStaff/?adminName=" + adminName + "&phone=" + phone + "&username=" + username + "&password=" + password);
+            }).start();
+        }else{
+            adminLoginLabel.setText("Password doesn't match");
+            adminLoginLabel.setVisible(true);
+        }
 
     }
 
