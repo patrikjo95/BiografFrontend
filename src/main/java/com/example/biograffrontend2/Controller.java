@@ -69,16 +69,25 @@ public class Controller {
 
     @FXML
     protected void loginButtonClicked(ActionEvent event) throws IOException {
+        /*new Thread(() -> {
+            ConnectionManager cm = new ConnectionManager();
+            String username = userNameField.getText();
+            String password = passwordField.getText();
+
+            response = cm.sendGetRequest("staffLogin/?username=" + username + "&password=" + password);
+            adminLoginLabel.setVisible(false);
+
+            if(response.equals(username + " " + password)){
+                Application m = new Application();
+                try {
+                    m.changeScene("adminSchema.fxml");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }).start();*/
         Application m = new Application();
-        //TODO fixa så att loginUserLabel inte är null
-        String loggedInUser = this.userNameField.getText();
-        /*if (loggedInUser.equals("sexy") && this.passwordField.getText().equals("1234")) {
-            m.changeScene("adminSchema.fxml");
-            loginUserLabel.setText("Inloggad som: " + loggedInUser);
-        } else {
-            this.loginErrorLabel.setText("Puder dont accept your response ");
-            this.loginErrorLabel.setVisible(true);
-        }*/
         m.changeScene("adminSchema.fxml");
     }
 
