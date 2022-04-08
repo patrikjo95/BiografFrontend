@@ -20,7 +20,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TableView layoutX="94.0" layoutY="34.0" prefHeight="375.0" prefWidth="506.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <TableView fx:id="schedule" layoutX="94.0" layoutY="34.0" prefHeight="375.0" prefWidth="506.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <columns>
             <TableColumn fx:id="movieNameColumn" editable="false" prefWidth="145.0" resizable="false" text="Movie Name" />
           <TableColumn fx:id="movieTimeColumn" editable="false" prefWidth="145.0" resizable="false" text="Time" />

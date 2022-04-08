@@ -15,6 +15,8 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Controller {
     static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/biograf";
@@ -45,6 +47,17 @@ public class Controller {
     private DatePicker datePicker;
     @FXML
     private Label workingLabel;
+    @FXML
+    private TableView schedule;
+    @FXML
+    private TableColumn movieNameColumn;
+    @FXML
+    private TableColumn movieTimeColumn;
+    @FXML
+    private TableColumn movieTheaterColumn;
+    @FXML
+    private TableColumn seatsAvalibleColumn;
+
 
     public String response;
 
@@ -144,6 +157,18 @@ public class Controller {
         colorAdjust.setBrightness(+0.1);
         ImageView currentImage = (ImageView) event.getSource();
         currentImage.setEffect(colorAdjust);
+
+    }
+
+    @FXML
+    public ObservableList<Schedule> scheduleObservableList() {
+        ObservableList<Schedule> schedule = FXCollections.observableArrayList();
+        ConnectionManager connectionmanager = new ConnectionManager();
+
+
+
+
+        return null;
 
     }
 
