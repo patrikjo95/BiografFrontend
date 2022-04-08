@@ -51,7 +51,7 @@
       </VBox>
    </left>
    <center>
-      <Button fx:id="addAdminButton" mnemonicParsing="false" onAction="#addAdminButtonClicked" onMouseClicked="#addAdminButtonClicked" prefHeight="25.0" prefWidth="123.0" text="Add Admin" BorderPane.alignment="CENTER">
+      <Button fx:id="addAdminButton" mnemonicParsing="false" onAction="#createAdminButtonClicked" prefHeight="25.0" prefWidth="123.0" text="Add Admin" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="150.0" right="140.0" />
          </BorderPane.margin>

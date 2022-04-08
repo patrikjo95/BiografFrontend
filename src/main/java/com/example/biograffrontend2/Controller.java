@@ -1,5 +1,6 @@
 package com.example.biograffrontend2;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -75,15 +76,18 @@ public class Controller {
             String password = passwordField.getText();
 
             response = cm.sendGetRequest("staffLogin/?username=" + username + "&password=" + password);
-            adminLoginLabel.setVisible(false);
+            //adminLoginLabel.setVisible(false);
 
-            if(response.equals(username + " " + password)){
+            if(response.equals(null)){
                 Application m = new Application();
                 try {
                     m.changeScene("adminSchema.fxml");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }else{
+                loginErrorLabel.setVisible(true);
+                loginErrorLabel.setText("Incorrect login");
             }
 
         }).start();*/
@@ -178,38 +182,44 @@ public class Controller {
 
 
     @FXML
-    private void addAdminButtonClicked(){
-        new Thread(() -> {
+    private void createAdminButtonClicked(ActionEvent event){
+        Platform.runLater(() -> {
             ConnectionManager cm = new ConnectionManager();
             String adminName = adminNameField.getText();
             String phone = adminPhoneField.getText();
             String username = adminUsernameField.getText();
             String password = adminPassword1Field.getText();
+            String tom = "@tom";
 
-            response = cm.sendGetRequest("addStaff/?adminName=" + adminName + "&phone=" + phone + "&username=" + username + "&password=" + password);
-            adminLoginLabel.setVisible(false);
+            response = cm.sendGetRequest("addStaff/?adminName=" + adminName + "&phone=" + phone + "&username=" + username + "&password=" + password + "&@tom=" + tom);
+
+            //adminLoginLabel.setVisible(false);
 
             if(adminPassword1Field.getText().equals(adminPassword2Field.getText())) {
                 Application m = new Application();
                 try {
                     m.changeScene("adminSchema.fxml");
+                    System.out.println("helt rätt din råtta");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }else if (!Objects.equals(adminPassword1Field.getText(), adminPassword2Field.getText())){
+                adminLoginLabel.setVisible(true);
                 adminLoginLabel.setText("Incorrect username or password, please try again.");
-                adminLoginLabel.setVisible(true);
 
-            }else if(Objects.equals(response, "Felaktigt telefonnummer")){
-                adminLoginLabel.setText("Incorrect phone number");
-                adminLoginLabel.setVisible(true);
+            }else if(response.equals("number")){
+                //adminLoginLabel.setText("Incorrect phone number");
+                //adminLoginLabel.setVisible(true);
+                System.out.println("Fel telefonnummer");
 
-            }else if(Objects.equals(response, "Double user")){
-                adminLoginLabel.setText("That user already exists");
-                adminLoginLabel.setVisible(true);
+            }else if(response.equals("username")){
+                //adminLoginLabel.setText("That user already exists");
+                //adminLoginLabel.setVisible(true);
+                System.out.println("duplicate username");
 
             }
-        }).start();
+        });
+
     }
 
     @FXML
