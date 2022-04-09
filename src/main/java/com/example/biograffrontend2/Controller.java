@@ -217,7 +217,7 @@ public class Controller {
             String tom = "@tom";
 
             response = cm.sendGetRequest("addStaff/?adminName=" + adminName + "&phone=" + phone + "&username=" + username + "&password=" + password + "&@tom=" + tom);
-
+            System.out.println("response: " + response);
             //adminLoginLabel.setVisible(false);
 
             if(adminPassword1Field.getText().equals(adminPassword2Field.getText())) {
@@ -225,6 +225,7 @@ public class Controller {
                 try {
                     m.changeScene("adminSchema.fxml");
                     System.out.println("helt rätt din råtta");
+                    System.out.println("response: " + response);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
