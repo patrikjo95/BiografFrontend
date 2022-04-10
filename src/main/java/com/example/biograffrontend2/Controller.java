@@ -215,32 +215,32 @@ public class Controller {
             String password = adminPassword1Field.getText();
             String tom = "@tom";
 
+
+
             response = cm.sendGetRequest("addStaff/?adminName=" + adminName + "&phone=" + phone + "&username=" + username + "&password=" + password + "&@tom=" + tom);
 
             System.out.println("response: " + response);
             //adminLoginLabel.setVisible(false);
 
-
-            if(!Objects.equals(adminPassword1Field.getText(), adminPassword2Field.getText())){
+            if(adminPassword1Field.getText().equals(adminPassword2Field.getText())){
                 adminLoginLabel.setVisible(true);
-                adminLoginLabel.setText("Incorrect username or password, please try again.");
-            }
-            else if(response.contains("number")){
+                adminLoginLabel.setText("Incorrect password, please try again.");
+
+            }if(response.contains("number")){
                 adminLoginLabel.setText("Incorrect phone number");
                 adminLoginLabel.setVisible(true);
                 System.out.println("Fel telefonnummer");
 
-            }else if(response.contains("username")){
+            }if(response.contains("username")){
                 adminLoginLabel.setText("That user already exists");
                 adminLoginLabel.setVisible(true);
                 System.out.println("duplicate username");
 
-            }else if(adminPassword1Field.getText().equals(adminPassword2Field.getText())) {
+            }if(adminPassword1Field.getText().equals(adminPassword2Field.getText())) {
                 Application m = new Application();
                 try {
                     m.changeScene("adminSchema.fxml");
                     System.out.println("helt rätt din råtta");
-                    System.out.println("response: " + response);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
