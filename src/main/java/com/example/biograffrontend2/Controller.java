@@ -90,7 +90,7 @@ public class Controller {
             response = cm.sendGetRequest("staffLogin/?username=" + username + "&password=" + password + "&@tom=" + tom);
             //adminLoginErrorLabel.setVisible(false);
 
-            if(response.equals(null)){
+            if(response.contains("Grattis")){
                 Application m = new Application();
                 try {
                     m.changeScene("adminSchema.fxml");
@@ -103,8 +103,6 @@ public class Controller {
             }
 
         });
-        Application m = new Application();
-        m.changeScene("adminSchema.fxml");
     }
 
 
