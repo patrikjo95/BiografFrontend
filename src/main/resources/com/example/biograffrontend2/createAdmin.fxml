@@ -25,7 +25,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <Label fx:id="adminLoginLabel" text="FELMEDDELANDE" textAlignment="CENTER" textFill="RED" visible="false">
+            <Label fx:id="adminLoginErrorLabel" text="FELMEDDELANDE" textAlignment="CENTER" textFill="RED" visible="false">
                <padding>
                   <Insets top="50.0" />
                </padding>

@@ -42,7 +42,7 @@ public class Controller {
     @FXML
     private TextField adminPassword2Field;
     @FXML
-    private Label adminLoginLabel;
+    private Label adminLoginErrorLabel;
     @FXML
     private DatePicker datePicker;
     @FXML
@@ -60,7 +60,7 @@ public class Controller {
 
 
     public String response;
-
+    String tom = "@tom";
 
     public Controller() {
 
@@ -82,13 +82,13 @@ public class Controller {
 
     @FXML
     protected void loginButtonClicked(ActionEvent event) throws IOException {
-        /*new Thread(() -> {
+        Platform.runLater(() -> {
             ConnectionManager cm = new ConnectionManager();
             String username = userNameField.getText();
             String password = passwordField.getText();
 
-            response = cm.sendGetRequest("staffLogin/?username=" + username + "&password=" + password);
-            //adminLoginLabel.setVisible(false);
+            response = cm.sendGetRequest("staffLogin/?username=" + username + "&password=" + password + "&@tom=" + tom);
+            //adminLoginErrorLabel.setVisible(false);
 
             if(response.equals(null)){
                 Application m = new Application();
@@ -102,7 +102,7 @@ public class Controller {
                 loginErrorLabel.setText("Incorrect login");
             }
 
-        }).start();*/
+        });
         Application m = new Application();
         m.changeScene("adminSchema.fxml");
     }
@@ -213,37 +213,37 @@ public class Controller {
             String phone = adminPhoneField.getText();
             String username = adminUsernameField.getText();
             String password = adminPassword1Field.getText();
-            String tom = "@tom";
 
-
+            if(Objects.equals(adminPassword1Field.getText(), adminPassword2Field.getText())){
 
             response = cm.sendGetRequest("addStaff/?adminName=" + adminName + "&phone=" + phone + "&username=" + username + "&password=" + password + "&@tom=" + tom);
 
             System.out.println("response: " + response);
-            //adminLoginLabel.setVisible(false);
+            adminLoginErrorLabel.setVisible(false);
 
-            if(adminPassword1Field.getText().equals(adminPassword2Field.getText())){
-                adminLoginLabel.setVisible(true);
-                adminLoginLabel.setText("Incorrect password, please try again.");
+                if(response.contains("number")){
+                    adminLoginErrorLabel.setText("Incorrect phone number");
+                    adminLoginErrorLabel.setVisible(true);
+                    System.out.println("Fel telefonnummer");
 
-            }if(response.contains("number")){
-                adminLoginLabel.setText("Incorrect phone number");
-                adminLoginLabel.setVisible(true);
-                System.out.println("Fel telefonnummer");
+                }else if(response.contains("username")){
+                    adminLoginErrorLabel.setText("That user already exists");
+                    adminLoginErrorLabel.setVisible(true);
+                    System.out.println("duplicate username");
 
-            }if(response.contains("username")){
-                adminLoginLabel.setText("That user already exists");
-                adminLoginLabel.setVisible(true);
-                System.out.println("duplicate username");
-
-            }if(adminPassword1Field.getText().equals(adminPassword2Field.getText())) {
-                Application m = new Application();
-                try {
-                    m.changeScene("adminSchema.fxml");
-                    System.out.println("helt rätt din råtta");
-                } catch (IOException e) {
-                    e.printStackTrace();
+                }else if(adminPassword1Field.getText().equals(adminPassword2Field.getText())) {
+                    Application m = new Application();
+                    try {
+                        m.changeScene("adminSchema.fxml");
+                        //loginUserLabel.setText("Inloggad som: " + userNameField.getText());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
+
+            }else{
+                adminLoginErrorLabel.setVisible(true);
+                adminLoginErrorLabel.setText("Incorrect password, please try again.");
             }
 
         });
