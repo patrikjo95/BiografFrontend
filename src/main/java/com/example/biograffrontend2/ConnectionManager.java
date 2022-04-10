@@ -24,7 +24,7 @@ public class ConnectionManager {
             int status = connection.getResponseCode();
             System.out.println("status: " + status);
 
-            if(status > 300){
+            if(status < 300){
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 while((line = reader.readLine()) != null){
                     responseString += line;

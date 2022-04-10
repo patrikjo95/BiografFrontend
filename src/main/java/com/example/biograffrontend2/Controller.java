@@ -73,7 +73,6 @@ public class Controller {
     }
 
 
-
     @FXML
     protected void adminButtonClicked(ActionEvent event) throws IOException {
         Application a = new Application();
@@ -217,10 +216,26 @@ public class Controller {
             String tom = "@tom";
 
             response = cm.sendGetRequest("addStaff/?adminName=" + adminName + "&phone=" + phone + "&username=" + username + "&password=" + password + "&@tom=" + tom);
+
             System.out.println("response: " + response);
             //adminLoginLabel.setVisible(false);
 
-            if(adminPassword1Field.getText().equals(adminPassword2Field.getText())) {
+
+            if(!Objects.equals(adminPassword1Field.getText(), adminPassword2Field.getText())){
+                adminLoginLabel.setVisible(true);
+                adminLoginLabel.setText("Incorrect username or password, please try again.");
+            }
+            else if(response.contains("number")){
+                adminLoginLabel.setText("Incorrect phone number");
+                adminLoginLabel.setVisible(true);
+                System.out.println("Fel telefonnummer");
+
+            }else if(response.contains("username")){
+                adminLoginLabel.setText("That user already exists");
+                adminLoginLabel.setVisible(true);
+                System.out.println("duplicate username");
+
+            }else if(adminPassword1Field.getText().equals(adminPassword2Field.getText())) {
                 Application m = new Application();
                 try {
                     m.changeScene("adminSchema.fxml");
@@ -229,21 +244,8 @@ public class Controller {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }else if (!Objects.equals(adminPassword1Field.getText(), adminPassword2Field.getText())){
-                adminLoginLabel.setVisible(true);
-                adminLoginLabel.setText("Incorrect username or password, please try again.");
-
-            }else if(response.equals("number")){
-                //adminLoginLabel.setText("Incorrect phone number");
-                //adminLoginLabel.setVisible(true);
-                System.out.println("Fel telefonnummer");
-
-            }else if(response.equals("username")){
-                //adminLoginLabel.setText("That user already exists");
-                //adminLoginLabel.setVisible(true);
-                System.out.println("duplicate username");
-
             }
+
         });
 
     }
@@ -283,8 +285,8 @@ public class Controller {
     }
 
     private ImageView getCurrentImage(MouseEvent event){
-
         return null;
     }
+
 
 }
