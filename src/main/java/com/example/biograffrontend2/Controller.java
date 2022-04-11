@@ -82,7 +82,7 @@ public class Controller {
 
     @FXML
     protected void loginButtonClicked(ActionEvent event) throws IOException {
-        Platform.runLater(() -> {
+        /*Platform.runLater(() -> {
             ConnectionManager cm = new ConnectionManager();
             String username = userNameField.getText();
             String password = passwordField.getText();
@@ -90,19 +90,24 @@ public class Controller {
             response = cm.sendGetRequest("staffLogin/?username=" + username + "&password=" + password + "&@tom=" + tom);
             //adminLoginErrorLabel.setVisible(false);
 
-            if(response.contains("Grattis")){
+            if(response.contains("Incorrect")){
+                loginErrorLabel.setVisible(true);
+                loginErrorLabel.setText("Incorrect login");
+                userNameField.clear();
+                passwordField.clear();
+            }else{
                 Application m = new Application();
                 try {
                     m.changeScene("adminSchema.fxml");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }else{
-                loginErrorLabel.setVisible(true);
-                loginErrorLabel.setText("Incorrect login");
             }
 
-        });
+        });*/
+        Application m = new Application();
+        m.changeScene("adminSchema.fxml");
+
     }
 
 

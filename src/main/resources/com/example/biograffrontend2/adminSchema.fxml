@@ -33,7 +33,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <Label fx:id="loginUserLabel" prefHeight="17.0" prefWidth="626.0" text="Inloggad som: " />
+            <Label fx:id="loginUserLabel" prefHeight="17.0" prefWidth="626.0" text="Inloggad som: " visible="false" />
             <Label fx:id="workingLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="136.0" prefWidth="601.0" text="Jobbar mellan 09:00 - 14:00" textAlignment="CENTER" visible="false">
                <padding>
                   <Insets top="100.0" />
