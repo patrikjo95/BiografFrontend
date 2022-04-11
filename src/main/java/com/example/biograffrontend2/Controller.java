@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Objects;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Controller {
     static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/biograf";
@@ -48,16 +50,15 @@ public class Controller {
     @FXML
     private Label workingLabel;
     @FXML
-    private TableView schedule;
+    private TableView<Schedule> schedule;
     @FXML
-    private TableColumn movieNameColumn;
+    private TableColumn<Schedule, String> movieNameColumn;
     @FXML
-    private TableColumn movieTimeColumn;
+    private TableColumn<Schedule, String> movieTimeColumn;
     @FXML
-    private TableColumn movieTheaterColumn;
+    private TableColumn<Schedule, String> movieTheaterColumn;
     @FXML
-    private TableColumn seatsAvalibleColumn;
-
+    private TableColumn<Schedule, String> seatsAvalibleColumn;
 
     public String response;
     public String tom = "@tom";
@@ -152,6 +153,7 @@ public class Controller {
         }
         m.changeScene("movieSchedule.fxml");
 
+
     }
 
     @FXML
@@ -163,17 +165,30 @@ public class Controller {
 
     }
 
+
+    // Förse tabellen med värden:
     @FXML
-    public ObservableList<Schedule> scheduleObservableList() {
+    public ObservableList<Schedule> populateTable() {
         ObservableList<Schedule> schedule = FXCollections.observableArrayList();
-        ConnectionManager connectionmanager = new ConnectionManager();
+        Schedule s = new Schedule("Get Out", "20:00", "BBB", "0");
+        schedule.add(s);
+        // Här måste vi få in samtliga värden från databasen in i vår lista schedule.
 
-
-
-
-        return null;
-
+        return schedule;
     }
+
+
+
+    @FXML
+    public void showTable() {
+        ObservableList<Schedule> table = populateTable();
+        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(""));
+        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(""));
+        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(""));
+        seatsAvalibleColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(""));
+        schedule.setItems(table);
+    }
+
 
     @FXML
     protected void movieMouseExitedEvent(MouseEvent event) {
