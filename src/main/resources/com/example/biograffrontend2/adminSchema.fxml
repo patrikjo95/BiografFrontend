@@ -27,6 +27,7 @@
                   <items>
                         <MenuItem fx:id="addAdmin" mnemonicParsing="false" onAction="#addAdminButtonClicked" text="Add Admin User" />
                         <MenuItem fx:id="addMovieButton" mnemonicParsing="false" onAction="#addMovieButtonClicked" text="Add Movie" />
+                        <MenuItem fx:id="deleteAdminMenuItem" mnemonicParsing="false" onAction="#deleteAdminMenuItemClicked" text="Delete Admin" />
                         <MenuItem fx:id="adminLogoutButton" mnemonicParsing="false" onAction="#adminLogoutButtonClicked" text="Logout" />
                     <MenuItem fx:id="menuItemClose" mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" />
                   </items>

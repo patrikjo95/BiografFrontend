@@ -60,7 +60,8 @@ public class Controller {
 
 
     public String response;
-    String tom = "@tom";
+    public String tom = "@tom";
+    public List<LocalDate> exempelDagar = new ArrayList<>();
 
     public Controller() {
 
@@ -207,6 +208,12 @@ public class Controller {
         m.changeScene("adminSchema.fxml");
     }
 
+    @FXML
+    protected void deleteAdminMenuItemClicked(ActionEvent event)throws IOException{
+        Application m = new Application();
+        m.changeScene("deleteAdmin.fxml");
+    }
+
 
     @FXML
     private void createAdminButtonClicked(ActionEvent event){
@@ -238,6 +245,8 @@ public class Controller {
                     Application m = new Application();
                     try {
                         m.changeScene("adminSchema.fxml");
+
+
                         //loginUserLabel.setText("Inloggad som: " + userNameField.getText());
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -254,18 +263,36 @@ public class Controller {
     }
 
     @FXML
+    public void deleteAdminButtonClicked(ActionEvent event){
+        Platform.runLater(() -> {
+        ConnectionManager cm = new ConnectionManager();
+        String username = userNameField.getText();
+        String password = passwordField.getText();
+
+        response = cm.sendGetRequest("deleteStaff/?username=" + username + "&password=" + password + "&@tom=" + tom);
+
+        if(response.contains("Incorrect")){
+            loginErrorLabel.setVisible(true);
+            loginErrorLabel.setText("User could not be deleted, please try again");
+        }else{
+            loginErrorLabel.setVisible(true);
+            loginErrorLabel.setText("Admin successfully deleted");
+        }
+        });
+    }
+
+    @FXML
     private void getDate() {
         LocalDate localDate = datePicker.getValue();
         workingLabel.setVisible(true);
-        //TODO denna skall hämta ifall man jobbar eller ej, visa vilken tid man jobbar samt var... DateCellFactory funkar inte...
-        workingLabel.setText(String.valueOf(localDate));
 
-        List<LocalDate> exempelDagar = new ArrayList<>();
         exempelDagar.add(LocalDate.of(2022, Month.MARCH, 30));
         exempelDagar.add(LocalDate.of(2022, Month.MARCH, 29));
         exempelDagar.add(LocalDate.of(2022, Month.MARCH, 28));
         exempelDagar.add(LocalDate.of(2022, Month.APRIL, 1));
-        System.out.println(exempelDagar);
+
+        //TODO denna skall hämta ifall man jobbar eller ej, visa vilken tid man jobbar samt var... DateCellFactory funkar inte...
+        workingLabel.setText(String.valueOf(localDate));
 
         datePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
             @Override
@@ -286,10 +313,5 @@ public class Controller {
         });
 
     }
-
-    private ImageView getCurrentImage(MouseEvent event){
-        return null;
-    }
-
 
 }
