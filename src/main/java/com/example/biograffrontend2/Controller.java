@@ -182,10 +182,10 @@ public class Controller {
     @FXML
     public void showTable() {
         ObservableList<Schedule> table = populateTable();
-        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(""));
-        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(""));
-        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(""));
-        seatsAvalibleColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(""));
+        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("name"));
+        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("time"));
+        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("theater"));
+        seatsAvalibleColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("seats"));
         schedule.setItems(table);
     }
 
