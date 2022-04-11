@@ -286,12 +286,16 @@ public class Controller {
 
         response = cm.sendGetRequest("deleteStaff/?username=" + username + "&password=" + password + "&@tom=" + tom);
 
-        if(response.contains("Incorrect")){
+        if(response.contains("Error")){
             loginErrorLabel.setVisible(true);
             loginErrorLabel.setText("User could not be deleted, please try again");
+            userNameField.clear();
+            passwordField.clear();
         }else{
             loginErrorLabel.setVisible(true);
             loginErrorLabel.setText("Admin successfully deleted");
+            userNameField.clear();
+            passwordField.clear();
         }
         });
     }
