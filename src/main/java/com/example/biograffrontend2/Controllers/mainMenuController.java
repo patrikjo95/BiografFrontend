@@ -39,6 +39,9 @@ public class mainMenuController {
     @FXML
     private TableColumn<Schedule, String> d;
 
+    public String response;
+    public String tom = "@tom";
+
 
     public mainMenuController() {
 
@@ -63,17 +66,21 @@ public class mainMenuController {
     @FXML
     protected void movieButtonClicked(MouseEvent event) throws IOException {
         Platform.runLater(()->{
+
         ImageView currentImage = (ImageView) event.getSource();
         System.out.println(currentImage);
         Application m = new Application();
 
         if(currentImage.getId().equals("brokebackImage")){
+            String Moviename = "BrokebackMountain";
             Platform.runLater(()->{
 
                 ConnectionManager cm = new ConnectionManager();
 
-                String response = cm.sendGetRequest("test");
-                System.out.println("brokeback");
+                String response = cm.sendGetRequest("returnMovieSchema/?Moviename=" + Moviename);
+
+                System.out.println(response);
+
             });
         }if(currentImage.getId().equals("spidermanImage")){
             System.out.println("Spiderman");
