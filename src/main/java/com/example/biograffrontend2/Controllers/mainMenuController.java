@@ -2,6 +2,7 @@ package com.example.biograffrontend2.Controllers;
 
 import com.example.biograffrontend2.Application;
 import com.example.biograffrontend2.ConnectionManager;
+import com.example.biograffrontend2.Movies;
 import com.example.biograffrontend2.Schedule;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -13,25 +14,19 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Callback;
+import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.*;
-import java.util.regex.Pattern;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class mainMenuController {
 
     @FXML
     private Label workingLabel;
     @FXML
-    private TableView<Schedule> kuk;
+    private TableView<Schedule> tableview;
     @FXML
-    private TableColumn<Schedule, String> alo;
+    private TableColumn<Schedule, String> a;
     @FXML
     private TableColumn<Schedule, String> b;
     @FXML
@@ -78,26 +73,8 @@ public class mainMenuController {
                 ConnectionManager cm = new ConnectionManager();
 
                 response = cm.sendGetRequest("returnMovieSchema/?Moviename=" + Moviename);
-
-
+                parseMovies(response);
                 System.out.println(response);
-                String movieName = response.split("movie_name\":|,")[1];
-                String movieDateTime = response.split("movie_datetime\":|,")[2];
-                String theaterId = response.split("theater_id\":|,")[3];
-                String seatsAvailable = response.split("seats_avalible\":|,")[4];
-
-
-
-
-
-
-                //System.out.println("Split respone: " + Arrays.toString(splitRespone));
-
-                System.out.println(movieName);
-                System.out.println(movieDateTime);
-                System.out.println(theaterId);
-                System.out.println(seatsAvailable);
-
 
             });
 
@@ -108,6 +85,8 @@ public class mainMenuController {
                     ConnectionManager cm = new ConnectionManager();
 
                     String response = cm.sendGetRequest("returnMovieSchema/?Moviename=" + Moviename);
+
+                    parseMovies(response);
 
                     System.out.println(response);
                 });
@@ -197,5 +176,17 @@ public class mainMenuController {
 
                 kuk.setItems(list);
     }*/
+
+    public void parseMovies(String moviesAsString){
+        Gson gson = new Gson();
+
+        Movies movies = gson.fromJson(moviesAsString, Movies.class);
+
+        a.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMoviename()));
+        b.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getDateTime()));
+        c.setCellValueFactory(new PropertyValueFactory<Schedule, String>(String.valueOf(movies.getTheaterId())));
+        a.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getSeatsAvailable()));
+
+    }
 
 }
