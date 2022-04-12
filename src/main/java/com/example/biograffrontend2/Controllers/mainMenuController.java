@@ -1,5 +1,8 @@
-package com.example.biograffrontend2;
+package com.example.biograffrontend2.Controllers;
 
+import com.example.biograffrontend2.Application;
+import com.example.biograffrontend2.ConnectionManager;
+import com.example.biograffrontend2.Schedule;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,21 +24,8 @@ import java.util.Objects;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Controller {
+public class mainMenuController {
 
-
-    @FXML
-    private TextField passwordField;
-    @FXML
-    private TextField userNameField;
-    @FXML
-    private Label loginErrorLabel;
-    @FXML
-    private Label loginUserLabel;
-
-
-    private DatePicker datePicker;
-    @FXML
     private Label workingLabel;
     @FXML
     private TableView<Schedule> kuk;
@@ -49,9 +39,7 @@ public class Controller {
     private TableColumn<Schedule, String> d;
 
 
-
-
-    public Controller() {
+    public mainMenuController() {
 
     }
 
@@ -69,7 +57,6 @@ public class Controller {
         a.changeScene("adminLogin.fxml");
 
     }
-
 
 
     @FXML
