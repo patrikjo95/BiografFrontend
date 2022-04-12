@@ -1,13 +1,27 @@
 package com.example.biograffrontend2.Controllers;
 
 import com.example.biograffrontend2.Application;
+import com.example.biograffrontend2.ConnectionManager;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
 public class adminLoginController {
 
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private TextField passwordField;
+    @FXML
+    private Label loginErrorLabel;
+
+
+    public String response;
+    public String tom = "@tom";
 
 
 
@@ -15,7 +29,7 @@ public class adminLoginController {
     protected void loginButtonClicked(ActionEvent event) throws IOException {
         /*Platform.runLater(() -> {
             ConnectionManager cm = new ConnectionManager();
-            String username = userNameField.getText();
+            String username = usernameField.getText();
             String password = passwordField.getText();
 
             response = cm.sendGetRequest("staffLogin/?username=" + username + "&password=" + password + "&@tom=" + tom);
@@ -24,7 +38,7 @@ public class adminLoginController {
             if(response.contains("Incorrect")){
                 loginErrorLabel.setVisible(true);
                 loginErrorLabel.setText("Incorrect login");
-                userNameField.clear();
+                usernameField.clear();
                 passwordField.clear();
             }else{
                 Application m = new Application();
