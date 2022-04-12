@@ -24,15 +24,18 @@ public class mainMenuController {
     @FXML
     private Label workingLabel;
     @FXML
-    private TableView<Schedule> tableview;
+    public static ImageView currentImage;
     @FXML
-    private TableColumn<Schedule, String> a;
+    private TableView<Schedule> tableView;
     @FXML
-    private TableColumn<Schedule, String> b;
+    private TableColumn<Schedule, String> movieNameColumn;
     @FXML
-    private TableColumn<Schedule, String> c;
+    private TableColumn<Schedule, String> movieTimeColumn;
     @FXML
-    private TableColumn<Schedule, String> d;
+    private TableColumn<Schedule, String> movieTheaterColumn;
+    @FXML
+    private TableColumn<Schedule, String> seatsAvailableColumn;
+
 
     public String response;
     public String tom = "@tom";
@@ -61,24 +64,22 @@ public class mainMenuController {
     @FXML
     protected void movieButtonClicked(MouseEvent event) throws IOException {
         Platform.runLater(()->{
+            ImageView currentImage = (ImageView) event.getSource();
+            //System.out.println(currentImage);
 
-        ImageView currentImage = (ImageView) event.getSource();
-        //System.out.println(currentImage);
-        Application m = new Application();
+            if(currentImage.getId().equals("brokebackImage")){
+                String Moviename = "BrokebackMountain";
+                Platform.runLater(()->{
 
-        if(currentImage.getId().equals("brokebackImage")){
-            String Moviename = "BrokebackMountain";
-            Platform.runLater(()->{
+                    ConnectionManager cm = new ConnectionManager();
 
-                ConnectionManager cm = new ConnectionManager();
+                    response = cm.sendGetRequest("returnMovieSchema/?Moviename=" + Moviename);
+                    //parseMovies(response);
+                    System.out.println(response);
 
-                response = cm.sendGetRequest("returnMovieSchema/?Moviename=" + Moviename);
-                parseMovies(response);
-                System.out.println(response);
+                });
 
-            });
-
-        }if(currentImage.getId().equals("spidermanImage")){
+            }if(currentImage.getId().equals("spidermanImage")){
                 String Moviename = "Spiderman";
                 Platform.runLater(()->{
 
@@ -86,25 +87,36 @@ public class mainMenuController {
 
                     String response = cm.sendGetRequest("returnMovieSchema/?Moviename=" + Moviename);
 
-                    parseMovies(response);
+                    //parseMovies(response);
 
                     System.out.println(response);
                 });
 
-        }if(currentImage.getId().equals("snatchImage")){
-            System.out.println("Snatch");
-        }if(currentImage.getId().equals("theGentlemenImage")){
-            System.out.println("The Gentlemen");
-        }
+            }if(currentImage.getId().equals("snatchImage")){
+                System.out.println("Snatch");
+            }if(currentImage.getId().equals("theGentlemenImage")){
+                System.out.println("The Gentlemen");
+            }
             try {
+                Application m = new Application();
                 m.changeScene("movieSchedule.fxml");
-                //showBooks();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
 
         });
+
+    }
+    public void parseMovies(String moviesAsString){
+        Gson gson = new Gson();
+
+        Movies movies = gson.fromJson(moviesAsString, Movies.class);
+
+        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMoviename()));
+        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getDateTime()));
+        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(String.valueOf(movies.getTheaterId())));
+        seatsAvailableColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getSeatsAvailable()));
 
     }
 
@@ -177,16 +189,5 @@ public class mainMenuController {
                 kuk.setItems(list);
     }*/
 
-    public void parseMovies(String moviesAsString){
-        Gson gson = new Gson();
-
-        Movies movies = gson.fromJson(moviesAsString, Movies.class);
-
-        a.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMoviename()));
-        b.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getDateTime()));
-        c.setCellValueFactory(new PropertyValueFactory<Schedule, String>(String.valueOf(movies.getTheaterId())));
-        a.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getSeatsAvailable()));
-
-    }
 
 }
