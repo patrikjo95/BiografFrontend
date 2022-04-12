@@ -18,9 +18,9 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.regex.Pattern;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -68,7 +68,7 @@ public class mainMenuController {
         Platform.runLater(()->{
 
         ImageView currentImage = (ImageView) event.getSource();
-        System.out.println(currentImage);
+        //System.out.println(currentImage);
         Application m = new Application();
 
         if(currentImage.getId().equals("brokebackImage")){
@@ -77,13 +77,41 @@ public class mainMenuController {
 
                 ConnectionManager cm = new ConnectionManager();
 
-                String response = cm.sendGetRequest("returnMovieSchema/?Moviename=" + Moviename);
+                response = cm.sendGetRequest("returnMovieSchema/?Moviename=" + Moviename);
+
 
                 System.out.println(response);
+                String movieName = response.split("movie_name\":|,")[1];
+                String movieDateTime = response.split("movie_datetime\":|,")[2];
+                String theaterId = response.split("theater_id\":|,")[3];
+                String seatsAvailable = response.split("seats_avalible\":|,")[4];
+
+
+
+
+
+
+                //System.out.println("Split respone: " + Arrays.toString(splitRespone));
+
+                System.out.println(movieName);
+                System.out.println(movieDateTime);
+                System.out.println(theaterId);
+                System.out.println(seatsAvailable);
+
 
             });
+
         }if(currentImage.getId().equals("spidermanImage")){
-            System.out.println("Spiderman");
+                String Moviename = "Spiderman";
+                Platform.runLater(()->{
+
+                    ConnectionManager cm = new ConnectionManager();
+
+                    String response = cm.sendGetRequest("returnMovieSchema/?Moviename=" + Moviename);
+
+                    System.out.println(response);
+                });
+
         }if(currentImage.getId().equals("snatchImage")){
             System.out.println("Snatch");
         }if(currentImage.getId().equals("theGentlemenImage")){
@@ -91,7 +119,7 @@ public class mainMenuController {
         }
             try {
                 m.changeScene("movieSchedule.fxml");
-                showBooks();
+                //showBooks();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -141,7 +169,7 @@ public class mainMenuController {
         });
     }
 
-    @FXML
+/*    @FXML
     public ObservableList<Schedule> getBooksList(){
         ObservableList<Schedule> bookList = FXCollections.observableArrayList();
 
@@ -168,6 +196,6 @@ public class mainMenuController {
                 d.setCellValueFactory(new PropertyValueFactory<Schedule, String>("d"));
 
                 kuk.setItems(list);
-    }
+    }*/
 
 }
