@@ -38,6 +38,8 @@ public class Controller {
     @FXML
     private Label workingLabel;
     @FXML
+    private TableView<Schedule> kuk;
+    @FXML
     private TableColumn<Schedule, String> alo;
     @FXML
     private TableColumn<Schedule, String> b;
