@@ -1,8 +1,6 @@
 package com.example.biograffrontend2.Controllers;
 
 import com.example.biograffrontend2.Application;
-import com.example.biograffrontend2.ConnectionManager;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -91,5 +89,6 @@ public class adminLoginController {
     public void adminLoginBackButtonClicked(ActionEvent event) throws IOException {
         Application m = new Application();
         m.changeScene("mainMenu.fxml");
+
     }
 }

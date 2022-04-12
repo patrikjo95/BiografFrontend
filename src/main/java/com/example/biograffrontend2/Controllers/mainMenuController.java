@@ -26,6 +26,7 @@ import javafx.collections.ObservableList;
 
 public class mainMenuController {
 
+    @FXML
     private Label workingLabel;
     @FXML
     private TableView<Schedule> kuk;
@@ -117,11 +118,9 @@ public class mainMenuController {
     }
 
 
-
     @FXML
     public static void addTextLimiter(final TextField tf, final int maxLength) {
         Platform.runLater(()->{
-
 
         tf.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -163,7 +162,5 @@ public class mainMenuController {
 
                 kuk.setItems(list);
     }
-
-
 
 }
