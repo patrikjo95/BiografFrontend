@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biograffrontend2.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biograffrontend2.Controllers.movieScheduleController">
    <children>
       <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <menus>
@@ -22,10 +22,10 @@
       </MenuBar>
       <TableView fx:id="schedule" layoutX="94.0" layoutY="34.0" prefHeight="375.0" prefWidth="506.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <columns>
-            <TableColumn fx:id="movieNameColumn" editable="false" prefWidth="145.0" resizable="false" text="Movie Name" />
-          <TableColumn fx:id="movieTimeColumn" editable="false" prefWidth="145.0" resizable="false" text="Time" />
-          <TableColumn fx:id="movieTheaterColumn" editable="false" prefWidth="145.0" resizable="false" text="Theater" />
-            <TableColumn fx:id="seatsAvalibleColumn" prefWidth="145.0" resizable="false" text="Seats Avalible" />
+            <TableColumn fx:id="alo" prefWidth="145.0" resizable="false" text="Movie Name" />
+          <TableColumn fx:id="b" prefWidth="145.0" resizable="false" text="Time" />
+          <TableColumn fx:id="c" prefWidth="145.0" resizable="false" text="Theater" />
+            <TableColumn fx:id="d" prefWidth="145.0" resizable="false" text="Seats Avalible" />
         </columns>
       </TableView>
       <Button fx:id="confirmMovieButton" layoutX="14.0" layoutY="58.0" mnemonicParsing="false" text="Confirm" />

@@ -23,11 +23,14 @@ public class Application extends javafx.application.Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+
     }
 
     public void changeScene(String fxml) throws IOException {
         Parent pane = FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource(fxml)));
         newStage.getScene().setRoot(pane);
+
+
     }
 
     public static void main(String[] args) {

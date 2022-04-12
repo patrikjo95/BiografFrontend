@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biograffrontend2.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biograffrontend2.Controllers.addMovieController">
    <children>
       <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <menus>
@@ -25,7 +25,7 @@
             <TableColumn fx:id="movieNameColumn" editable="false" prefWidth="145.0" resizable="false" text="Movie Name" />
           <TableColumn fx:id="movieTimeColumn" editable="false" prefWidth="145.0" resizable="false" text="Time" />
           <TableColumn fx:id="movieTheaterColumn" editable="false" prefWidth="145.0" resizable="false" text="Theater" />
-            <TableColumn fx:id="seatsAvalibleColumn" prefWidth="145.0" resizable="false" text="Seats Avalible" />
+            <TableColumn fx:id="seatsAvailableColumn" prefWidth="145.0" resizable="false" text="Seats Avalible" />
         </columns>
       </TableView>
       <Button layoutX="14.0" layoutY="58.0" mnemonicParsing="false" text="Confirm" />

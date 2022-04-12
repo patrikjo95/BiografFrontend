@@ -6,4 +6,6 @@ module com.example.biograffrontend2 {
 
     opens com.example.biograffrontend2 to javafx.fxml;
     exports com.example.biograffrontend2;
+    exports com.example.biograffrontend2.Controllers;
+    opens com.example.biograffrontend2.Controllers to javafx.fxml;
 }

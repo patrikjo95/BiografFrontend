@@ -1,6 +1,8 @@
 package com.example.biograffrontend2;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -18,12 +20,9 @@ import java.util.List;
 import java.util.Objects;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Controller {
-    static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/biograf";
-    static final String USER = "newuser1";
-    static final String PASS = "password";
+
 
     @FXML
     private TextField passwordField;
@@ -33,36 +32,22 @@ public class Controller {
     private Label loginErrorLabel;
     @FXML
     private Label loginUserLabel;
-    @FXML
-    private TextField adminNameField;
-    @FXML
-    private TextField adminPhoneField;
-    @FXML
-    private TextField adminUsernameField;
-    @FXML
-    private TextField adminPassword1Field;
-    @FXML
-    private TextField adminPassword2Field;
-    @FXML
-    private Label adminLoginErrorLabel;
-    @FXML
+
+
     private DatePicker datePicker;
     @FXML
     private Label workingLabel;
     @FXML
-    private TableView<Schedule> schedule;
+    private TableColumn<Schedule, String> alo;
     @FXML
-    private TableColumn<Schedule, String> movieNameColumn;
+    private TableColumn<Schedule, String> b;
     @FXML
-    private TableColumn<Schedule, String> movieTimeColumn;
+    private TableColumn<Schedule, String> c;
     @FXML
-    private TableColumn<Schedule, String> movieTheaterColumn;
-    @FXML
-    private TableColumn<Schedule, String> seatsAvalibleColumn;
+    private TableColumn<Schedule, String> d;
 
-    public String response;
-    public String tom = "@tom";
-    public List<LocalDate> exempelDagar = new ArrayList<>();
+
+
 
     public Controller() {
 
@@ -72,78 +57,34 @@ public class Controller {
     @FXML
     protected void closeButtonClicked() {
         System.exit(0);
+
     }
 
 
     @FXML
-    protected void adminButtonClicked(ActionEvent event) throws IOException {
+    protected void adminLoginButtonClicked(ActionEvent event) throws IOException {
         Application a = new Application();
         a.changeScene("adminLogin.fxml");
 
     }
 
-    @FXML
-    protected void loginButtonClicked(ActionEvent event) throws IOException {
-        /*Platform.runLater(() -> {
-            ConnectionManager cm = new ConnectionManager();
-            String username = userNameField.getText();
-            String password = passwordField.getText();
 
-            response = cm.sendGetRequest("staffLogin/?username=" + username + "&password=" + password + "&@tom=" + tom);
-            //adminLoginErrorLabel.setVisible(false);
-
-            if(response.contains("Incorrect")){
-                loginErrorLabel.setVisible(true);
-                loginErrorLabel.setText("Incorrect login");
-                userNameField.clear();
-                passwordField.clear();
-            }else{
-                Application m = new Application();
-                try {
-                    m.changeScene("adminSchema.fxml");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        });*/
-        Application m = new Application();
-        m.changeScene("adminSchema.fxml");
-
-    }
-
-
-    @FXML
-    protected void adminLogoutButtonClicked(ActionEvent event) throws IOException {
-        Application m = new Application();
-        m.changeScene("adminLogin.fxml");
-    }
-
-    @FXML
-    protected void addAdminButtonClicked(ActionEvent event) throws IOException {
-        Application m = new Application();
-        m.changeScene("createAdmin.fxml");
-    }
-
-    @FXML
-    protected void addMovieButtonClicked(ActionEvent event) throws IOException {
-        Application m = new Application();
-        m.changeScene("addMovie.fxml");
-    }
 
     @FXML
     protected void movieButtonClicked(MouseEvent event) throws IOException {
+        Platform.runLater(()->{
         ImageView currentImage = (ImageView) event.getSource();
         System.out.println(currentImage);
         Application m = new Application();
 
         if(currentImage.getId().equals("brokebackImage")){
-            new Thread(()->{
+            Platform.runLater(()->{
+
                 ConnectionManager cm = new ConnectionManager();
 
                 String response = cm.sendGetRequest("test");
                 System.out.println("brokeback");
-            }).start();
+            });
         }if(currentImage.getId().equals("spidermanImage")){
             System.out.println("Spiderman");
         }if(currentImage.getId().equals("snatchImage")){
@@ -151,8 +92,15 @@ public class Controller {
         }if(currentImage.getId().equals("theGentlemenImage")){
             System.out.println("The Gentlemen");
         }
-        m.changeScene("movieSchedule.fxml");
+            try {
+                m.changeScene("movieSchedule.fxml");
+                showBooks();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+
+        });
 
     }
 
@@ -167,27 +115,7 @@ public class Controller {
 
 
     // Förse tabellen med värden:
-    @FXML
-    public ObservableList<Schedule> populateTable() {
-        ObservableList<Schedule> schedule = FXCollections.observableArrayList();
-        Schedule s = new Schedule("Get Out", "20:00", "BBB", "0");
-        schedule.add(s);
-        // Här måste vi få in samtliga värden från databasen in i vår lista schedule.
 
-        return schedule;
-    }
-
-
-
-    @FXML
-    public void showTable() {
-        ObservableList<Schedule> table = populateTable();
-        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("name"));
-        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("time"));
-        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("theater"));
-        seatsAvalibleColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("seats"));
-        schedule.setItems(table);
-    }
 
 
     @FXML
@@ -199,138 +127,54 @@ public class Controller {
 
     }
 
-    @FXML
-    protected void movieSchemaBackButtonClicked(ActionEvent event) throws IOException {
-        Application m = new Application();
-        m.changeScene("mainMenu.fxml");
-    }
-
-    @FXML
-    protected void addMovieBackButtonClicked(ActionEvent event)throws IOException{
-        Application m = new Application();
-        m.changeScene("adminSchema.fxml");
-    }
-
-    @FXML
-    protected void adminLoginBackButtonClicked(ActionEvent event)throws IOException{
-        Application m = new Application();
-        m.changeScene("mainMenu.fxml");
-    }
-
-    @FXML
-    protected void createAdminBackButtonClicked(ActionEvent event)throws IOException{
-        Application m = new Application();
-        m.changeScene("adminSchema.fxml");
-    }
-
-    @FXML
-    protected void deleteAdminMenuItemClicked(ActionEvent event)throws IOException{
-        Application m = new Application();
-        m.changeScene("deleteAdmin.fxml");
-    }
 
 
     @FXML
-    private void createAdminButtonClicked(ActionEvent event){
-        Platform.runLater(() -> {
-            ConnectionManager cm = new ConnectionManager();
-            String adminName = adminNameField.getText();
-            String phone = adminPhoneField.getText();
-            String username = adminUsernameField.getText();
-            String password = adminPassword1Field.getText();
-
-            if(Objects.equals(adminPassword1Field.getText(), adminPassword2Field.getText())){
-
-            response = cm.sendGetRequest("addStaff/?adminName=" + adminName + "&phone=" + phone + "&username=" + username + "&password=" + password + "&@tom=" + tom);
-
-            System.out.println("response: " + response);
-            adminLoginErrorLabel.setVisible(false);
-
-                if(response.contains("number")){
-                    adminLoginErrorLabel.setText("Incorrect phone number");
-                    adminLoginErrorLabel.setVisible(true);
-                    System.out.println("Fel telefonnummer");
-
-                }else if(response.contains("username")){
-                    adminLoginErrorLabel.setText("That user already exists");
-                    adminLoginErrorLabel.setVisible(true);
-                    System.out.println("duplicate username");
-
-                }else if(adminPassword1Field.getText().equals(adminPassword2Field.getText())) {
-                    Application m = new Application();
-                    try {
-                        m.changeScene("adminSchema.fxml");
+    public static void addTextLimiter(final TextField tf, final int maxLength) {
+        Platform.runLater(()->{
 
 
-                        //loginUserLabel.setText("Inloggad som: " + userNameField.getText());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-            }else{
-                adminLoginErrorLabel.setVisible(true);
-                adminLoginErrorLabel.setText("Incorrect password, please try again.");
-            }
-
-        });
-
-    }
-
-    @FXML
-    public void deleteAdminButtonClicked(ActionEvent event){
-        Platform.runLater(() -> {
-        ConnectionManager cm = new ConnectionManager();
-        String username = userNameField.getText();
-        String password = passwordField.getText();
-
-        response = cm.sendGetRequest("deleteStaff/?username=" + username + "&password=" + password + "&@tom=" + tom);
-
-        if(response.contains("Error")){
-            loginErrorLabel.setVisible(true);
-            loginErrorLabel.setText("User could not be deleted, please try again");
-            userNameField.clear();
-            passwordField.clear();
-        }else{
-            loginErrorLabel.setVisible(true);
-            loginErrorLabel.setText("Admin successfully deleted");
-            userNameField.clear();
-            passwordField.clear();
-        }
-        });
-    }
-
-    @FXML
-    private void getDate() {
-        LocalDate localDate = datePicker.getValue();
-        workingLabel.setVisible(true);
-
-        exempelDagar.add(LocalDate.of(2022, Month.MARCH, 30));
-        exempelDagar.add(LocalDate.of(2022, Month.MARCH, 29));
-        exempelDagar.add(LocalDate.of(2022, Month.MARCH, 28));
-        exempelDagar.add(LocalDate.of(2022, Month.APRIL, 1));
-
-        //TODO denna skall hämta ifall man jobbar eller ej, visa vilken tid man jobbar samt var... DateCellFactory funkar inte...
-        workingLabel.setText(String.valueOf(localDate));
-
-        datePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
+        tf.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public DateCell call(DatePicker param) {
-                return new DateCell() {
-                    @Override
-                    public void updateItem(LocalDate item, boolean empty) {
-                        super.updateItem(item, empty);
-
-                        if (!empty && item != null) {
-                            if (exempelDagar.contains(item)) {
-                                this.setStyle("-fx-background-color: pink");
-                            }
-                        }
-                    }
-                };
+            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
+                if (tf.getText().length() > maxLength) {
+                    String s = tf.getText().substring(0, maxLength);
+                    tf.setText(s);
+                }
             }
         });
-
+        });
     }
+
+    @FXML
+    public ObservableList<Schedule> getBooksList(){
+        ObservableList<Schedule> bookList = FXCollections.observableArrayList();
+
+        Schedule books;
+        books = new Schedule("A", "B", "C", "D");
+        bookList.add(books);
+        Schedule cooks;
+        cooks = new Schedule("E", "F", "G", "H");
+        bookList.add(cooks);
+        System.out.println(bookList);
+
+        return bookList;
+    }
+    @FXML
+    public void showBooks(){
+
+        System.out.println("Hej");
+        ObservableList<Schedule> list = getBooksList();
+        System.out.println(list.toString());
+
+                alo.setCellValueFactory(new PropertyValueFactory<Schedule, String>("a"));
+                b.setCellValueFactory(new PropertyValueFactory<Schedule, String>("b"));
+                c.setCellValueFactory(new PropertyValueFactory<Schedule, String>("c"));
+                d.setCellValueFactory(new PropertyValueFactory<Schedule, String>("d"));
+
+                kuk.setItems(list);
+    }
+
+
 
 }
