@@ -32,7 +32,7 @@ public class deleteAdminController {
             String username = userNameField.getText();
             String password = passwordField.getText();
 
-            response = cm.sendGetRequest("deleteStaff/?username=" + username + "&password=" + password + "&@tom=" + tom);
+            response = cm.sendGetRequest("delete_staff/?select_username=" + username + "&select_password=" + password + "&@tom=" + tom);
 
             if(response.contains("Error")){
                 loginErrorLabel.setVisible(true);

@@ -3,6 +3,7 @@ package com.example.biograffrontend2.Controllers;
 import com.example.biograffrontend2.*;
 import com.google.gson.*;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -75,16 +76,6 @@ public class addMovieController {
     @FXML
     public ObservableList<Schedule> populateTable(){
         ObservableList<Schedule> table = FXCollections.observableArrayList();
-        //Platform.runLater(()->{
-
-
-        /*ConnectionManager cm = new ConnectionManager();
-        response = cm.sendGetRequest("addMovie/?movie_name=" + tfName.getText() + "&movie_datetime=" + tfTime.getText() + "&theater_id_order=" + tfTheater.getText());
-
-        String response2;
-        response2 = cm.sendGetRequest("returnMovieSchema/?Moviename=" + tfName.getText());
-        //parseMovies(response2);
-        System.out.println(response2);*/
 
         Schedule brokebackmountain = new Schedule("BrokebackMountain", "null", "null");
         Schedule spiderman = new Schedule("Spiderman", "null", "null");
@@ -96,39 +87,12 @@ public class addMovieController {
         table.add(theGentlemen);
         table.add(snatch);
 
-        /*ConnectionManager cm = new ConnectionManager();
-
-        Gson gson = new Gson();
-        response = cm.sendGetRequest("addMovie/?movie_name=" + tfName.getText() + "&movie_datetime=" + tfTime.getText() + "&theater_id_order=" + tfTheater.getText());
-
-        String response2;
-        response2 = cm.sendGetRequest("returnMovieSchema/?Moviename=" + tfName.getText());
-
-        System.out.println(response2);
-
-        String trimmedResponse = trimResponse(response2);
-
-        System.out.println("trimmed version: " + trimmedResponse);
-
-        Movies[] movieArray = gson.fromJson(trimmedResponse, Movies[].class);
-        System.out.println("movieArray: " + movieArray[0]);
-        System.out.println("first movieName: " + movieArray[1].getMovie_name());
-        System.out.println(Arrays.toString(movieArray));
-
-            for (Movies movies : movieArray) {
-                Schedule insert = new Schedule(movies.getMovie_name(), movies.getMovie_datetime(), movies.getTheater_id(), movies.getSeats_avalible());
-
-                table.add(insert);
-            }
-        });*/
-
         return table;
 
     }
 
     @FXML
     public void showTable(){
-
         ObservableList<Schedule> list = populateTable();
 
         movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("a"));
@@ -154,12 +118,11 @@ public class addMovieController {
             ConnectionManager cm = new ConnectionManager();
 
             Gson gson = new Gson();
-            response = cm.sendGetRequest("addMovie/?movie_name=" + tfName.getText() + "&movie_datetime=" + tfTime.getText() + "&theater_id_order=" + tfTheater.getText());
+            response = cm.sendGetRequest("add_movie/?new_movie_name=" + tfName.getText() + "&new_movie_datetime=" + tfTime.getText() + "&which_theater_id=" + tfTheater.getText());
 
             String response2;
-            response2 = cm.sendGetRequest("returnMovieSchema/?Moviename=" + tfName.getText());
+            response2 = cm.sendGetRequest("return_movie_schema/?pick_movie_name=" + tfName.getText());
 
-            parseMovies(response2);
             System.out.println(response2);
 
             String trimmedResponse = trimResponse(response2);
@@ -168,15 +131,8 @@ public class addMovieController {
 
             Movies[] movieArray = gson.fromJson(trimmedResponse, Movies[].class);
             System.out.println("movieArray: " + movieArray[0]);
-            System.out.println("first movieName: " + movieArray[1].getMovie_name());
             System.out.println(Arrays.toString(movieArray));
 
-            for (int i = 0; i < movieArray.length; i++){
-                Schedule insert = new Schedule(movieArray[i].getMovie_name(), movieArray[i].getMovie_datetime(), movieArray[i].getTheater_id(), movieArray[i].getSeats_avalible());
-
-                System.out.println("index: " + Arrays.toString(movieArray) + i);
-                table.add(insert);
-            }
 
             clearColums();
             showTable();
@@ -192,19 +148,7 @@ public class addMovieController {
         showTable();
     }
 
-    public void parseMovies(String moviesAsString){
-        Gson gson = new Gson();
 
-        Movies movies = gson.fromJson(moviesAsString, Movies.class);
-
-        ObservableList<Schedule> table = FXCollections.observableArrayList();
-
-        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMovie_name()));
-        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMovie_datetime()));
-        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(String.valueOf(movies.getTheater_id())));
-        seatsAvailableColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getSeats_avalible()));
-
-    }
 
     public String trimResponse(String response){
         int first = 0;

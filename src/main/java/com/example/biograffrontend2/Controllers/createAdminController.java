@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -46,39 +47,44 @@ public class createAdminController {
             String username = adminUsernameField.getText();
             String password = adminPassword1Field.getText();
 
-            if(Objects.equals(adminPassword1Field.getText(), adminPassword2Field.getText())){
 
-                response = cm.sendGetRequest("addStaff/?adminName=" + adminName + "&phone=" + phone + "&username=" + username + "&password=" + password + "&@tom=" + tom);
+                if (Objects.equals(adminPassword1Field.getText(), adminPassword2Field.getText())) {
 
-                System.out.println("response: " + response);
-                adminLoginErrorLabel.setVisible(false);
+                    response = cm.sendGetRequest("add_staff/?new_name=" + adminName + "&new_phonenumber=" + phone + "&new_username=" + username + "&new_password=" + password + "&@tom=" + tom);
 
-                if(response.contains("number")){
-                    adminLoginErrorLabel.setText("Incorrect phone number");
-                    adminLoginErrorLabel.setVisible(true);
-                    System.out.println("Fel telefonnummer");
+                    System.out.println("response: " + response);
+                    adminLoginErrorLabel.setVisible(false);
 
-                }else if(response.contains("username")){
-                    adminLoginErrorLabel.setText("That user already exists");
-                    adminLoginErrorLabel.setVisible(true);
-                    System.out.println("duplicate username");
+                    if (response.contains("number")) {
+                        adminLoginErrorLabel.setText("Incorrect phone number");
+                        adminLoginErrorLabel.setVisible(true);
+                        System.out.println("Fel telefonnummer");
 
-                }else if(adminPassword1Field.getText().equals(adminPassword2Field.getText())) {
-                    Application m = new Application();
-                    try {
-                        m.changeScene("adminSchema.fxml");
+                    } else if (response.contains("username")) {
+                        adminLoginErrorLabel.setText("That user already exists");
+                        adminLoginErrorLabel.setVisible(true);
+                        System.out.println("duplicate username");
+
+                    } else if (response.contains("password")) {
+                        adminLoginErrorLabel.setText("Incorrect password, must be 8 characters long");
+                        adminLoginErrorLabel.setVisible(true);
 
 
-                        //loginUserLabel.setText("Inloggad som: " + userNameField.getText());
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    } else if (adminPassword1Field.getText().equals(adminPassword2Field.getText())) {
+                        Application m = new Application();
+                        try {
+                            m.changeScene("adminSchema.fxml");
+
+                            //loginUserLabel.setText("Inloggad som: " + userNameField.getText());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
 
-            }else{
-                adminLoginErrorLabel.setVisible(true);
-                adminLoginErrorLabel.setText("Incorrect password, please try again.");
-            }
+                } else {
+                    adminLoginErrorLabel.setVisible(true);
+                    adminLoginErrorLabel.setText("Incorrect password, please try again.");
+                }
 
         });
 
