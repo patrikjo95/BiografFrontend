@@ -1,11 +1,9 @@
 package com.example.biograffrontend2.Controllers;
 
 import com.example.biograffrontend2.Application;
-import com.example.biograffrontend2.ConnectionManager;
 import com.example.biograffrontend2.Movies;
 import com.example.biograffrontend2.Schedule;
 import com.google.gson.Gson;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,8 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
@@ -66,10 +62,10 @@ public class movieScheduleController {
 
         Movies movies = gson.fromJson(moviesAsString, Movies.class);
 
-        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMoviename()));
-        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getDateTime()));
-        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(String.valueOf(movies.getTheaterId())));
-        seatsAvailableColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getSeatsAvailable()));
+        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMovie_name()));
+        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMovie_datetime()));
+        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(String.valueOf(movies.getTheater_id())));
+        seatsAvailableColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getSeats_avalible()));
 
     }
 

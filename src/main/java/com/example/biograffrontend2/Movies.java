@@ -1,72 +1,64 @@
 package com.example.biograffrontend2;
 
 public class Movies {
-    public int theaterId;
-    public String moviename;
-    public String dateTime;
-    public String seatsAvailable;
+    public String movie_name;
+    public String movie_datetime;
+    public int theater_id;
+    public String seats_avalible;
 
-    public Movies(int TheaterID, String Name, String DateTime, String SeatsAvailable) {
-        this.moviename = Name;
-        this.dateTime = DateTime;
-        this.theaterId = TheaterID;
-        this.seatsAvailable = SeatsAvailable;
-
-    }
-
-    public Movies(String Name, String DateTime, int TheaterID, String SeatsAvailable) {
-        this.moviename = Name;
-        this.dateTime = DateTime;
-        this.theaterId = TheaterID;
-        this.seatsAvailable = SeatsAvailable;
+    public Movies(String movie_name, String movie_datetime, int theater_id, String seats_avalible) {
+        this.movie_name = movie_name;
+        this.movie_datetime = movie_datetime;
+        this.theater_id = theater_id;
+        this.seats_avalible = seats_avalible;
 
     }
 
-    public int getTheaterId() {
-        return theaterId;
+    public int getTheater_id() {
+        return theater_id;
     }
 
-    public void setTheaterId(int theaterId) {
-        this.theaterId = theaterId;
+    public void setTheater_id(int theater_id) {
+        this.theater_id = theater_id;
     }
 
-    public String getMoviename() {
-        return moviename;
+    public String getMovie_name() {
+        return movie_name;
     }
 
-    public void setMoviename(String moviename) {
-        this.moviename = moviename;
+    public void setMovie_name(String movie_name) {
+        this.movie_name = movie_name;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public String getMovie_datetime() {
+        return movie_datetime;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setMovie_datetime(String movie_datetime) {
+        this.movie_datetime = movie_datetime;
     }
 
-    public String getSeatsAvailable() {
-        return seatsAvailable;
+    public String getSeats_avalible() {
+        return seats_avalible;
     }
 
-    public void setSeatsAvailable(String seatsAvailable) {
-        this.seatsAvailable = seatsAvailable;
+    public void setSeats_avalible(String seats_avalible) {
+        this.seats_avalible = seats_avalible;
     }
 
 
 
     public Movies(String moviename) {
-        this.moviename = moviename;
+        this.movie_name = moviename;
     }
 
     @Override
     public String toString() {
         return "Movies{" +
-                "movie_name='" + moviename + '\'' +
-                ", movie_datetime='" + dateTime + '\'' +
-                ", theater_id='" + theaterId +
-                ", seats_avalible='" + seatsAvailable + '\'' +
+                "movie_name='" + movie_name + '\'' +
+                ", movie_datetime='" + movie_datetime + '\'' +
+                ", theater_id=" + theater_id +
+                ", seats_avalible='" + seats_avalible + '\'' +
                 '}';
     }
 }

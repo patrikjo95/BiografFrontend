@@ -17,7 +17,6 @@ import javafx.scene.input.MouseEvent;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.util.*;
 
 public class mainMenuController {
 
@@ -113,10 +112,10 @@ public class mainMenuController {
 
         Movies movies = gson.fromJson(moviesAsString, Movies.class);
 
-        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMoviename()));
-        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getDateTime()));
-        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(String.valueOf(movies.getTheaterId())));
-        seatsAvailableColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getSeatsAvailable()));
+        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMovie_name()));
+        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMovie_datetime()));
+        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(String.valueOf(movies.getTheater_id())));
+        seatsAvailableColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getSeats_avalible()));
 
     }
 

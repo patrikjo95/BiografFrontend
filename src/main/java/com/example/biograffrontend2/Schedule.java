@@ -21,6 +21,11 @@ public class Schedule {
         this.d = d;
     }
 
+    public Schedule(String a, String b, int c, String d) {
+
+
+    }
+
     public String getA() {
         return a;
     }

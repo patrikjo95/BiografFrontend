@@ -2,7 +2,7 @@ module com.example.biograffrontend2 {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-    requires com.google.gson;
+    requires gson;
 
 
     opens com.example.biograffrontend2 to javafx.fxml;
