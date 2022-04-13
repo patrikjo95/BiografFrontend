@@ -53,7 +53,7 @@ public class addMovieController {
     }
 
     private void clearColums() {
-        //showTable();
+        showTable();
         tfName.clear();
         tfTime.clear();
         tfTheater.clear();
@@ -113,8 +113,6 @@ public class addMovieController {
     @FXML
     protected void addButton(ActionEvent event) throws IOException {
         Platform.runLater(()->{
-            ObservableList<Schedule> table = FXCollections.observableArrayList();
-
             ConnectionManager cm = new ConnectionManager();
 
             Gson gson = new Gson();
