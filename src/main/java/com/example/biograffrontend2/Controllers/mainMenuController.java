@@ -74,8 +74,8 @@ public class mainMenuController {
                     ConnectionManager cm = new ConnectionManager();
 
                     response = cm.sendGetRequest("returnMovieSchema/?Moviename=" + Moviename);
-                    //parseMovies(response);
-                    System.out.println(response);
+                    parseMovies(response);
+                    //System.out.println(response);
 
                 });
 
@@ -87,7 +87,7 @@ public class mainMenuController {
 
                     String response = cm.sendGetRequest("returnMovieSchema/?Moviename=" + Moviename);
 
-                    //parseMovies(response);
+                    parseMovies(response);
 
                     System.out.println(response);
                 });

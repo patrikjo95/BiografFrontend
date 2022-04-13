@@ -55,6 +55,8 @@ public class movieScheduleController {
 
     @FXML
     protected void refreshButtonClicked(ActionEvent event) throws IOException {
+
+
         showTable();
 
     }
