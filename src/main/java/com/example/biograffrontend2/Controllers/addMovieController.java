@@ -1,9 +1,6 @@
 package com.example.biograffrontend2.Controllers;
 
-import com.example.biograffrontend2.Application;
-import com.example.biograffrontend2.ConnectionManager;
-import com.example.biograffrontend2.Movies;
-import com.example.biograffrontend2.Schedule;
+import com.example.biograffrontend2.*;
 import com.google.gson.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -18,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 public class addMovieController {
     @FXML
@@ -132,24 +130,49 @@ public class addMovieController {
             ConnectionManager cm = new ConnectionManager();
 
             Gson gson = new Gson();
-        response = cm.sendGetRequest("addMovie/?movie_name=" + tfName.getText() + "&movie_datetime=" + tfTime.getText() + "&theater_id_order=" + tfTheater.getText());
+            response = cm.sendGetRequest("addMovie/?movie_name=" + tfName.getText() + "&movie_datetime=" + tfTime.getText() + "&theater_id_order=" + tfTheater.getText());
 
-        String response2;
-        response2 = cm.sendGetRequest("returnMovieSchema/?Moviename=" + tfName.getText());
+            String response2;
+            response2 = cm.sendGetRequest("returnMovieSchema/?Moviename=" + tfName.getText());
 
-        parseMovies(response2);
-        System.out.println(response2);
+            parseMovies(response2);
+            System.out.println(response2);
 
-        String trimmedResponse = trimResponse(response2);
 
-        System.out.println("trimmed version: "+response2);
+            String trimmedResponse = trimResponse(response2);
 
-        Movies[] movieArray = gson.fromJson(trimmedResponse, Movies[].class);
-        System.out.println("movieArray: " + movieArray[1]);
-        System.out.println(Arrays.toString(movieArray));
+            System.out.println("trimmed version: " + trimmedResponse);
+
+
+
+            String json = "{'hora': 'TheGentlemen', 'kuk': '2021-04-13', 'theater_id': 2, 'seats_avalible': 59}";
+
+            Gson gson2 = new Gson();
+            Test emp = gson2.fromJson("{'kuk': 'TheGentlemen', 'edvinlitenkuk': '2021-04-13', 'theater_id': 2}", Test.class);
+            System.out.println("emp: " + emp);
+
+           Test host = new Test("A", "B", "C", "D");
+
+           System.out.println(host);
+           Gson gson3 = new Gson();
+
+           String hej = String.valueOf(host);
+
+           Test emp3 = gson3.fromJson(hej, Test.class);
+
+           System.out.println(emp3);
+
+
+
+
+            //Movies<String> movieList = new List<>;
+            Movies[] movieArray = gson2.fromJson(trimmedResponse, Movies[].class);
+            System.out.println("movieArray: " + movieArray[0]);
+            System.out.println(Arrays.toString(movieArray));
+
+
 
         //System.out.println(response);
-
 
         /*Schedule schedule = new Schedule(tfName.getText(), tfTime.getText(), tfTheater.getText());
 
@@ -160,7 +183,6 @@ public class addMovieController {
 
         clearColums();
         showTable();
-
 
         });
 
@@ -198,9 +220,9 @@ public class addMovieController {
                 last = i;
             }
         }
-        response = response.substring(first,last+1);
+        String trimmedStringResponse = response.substring(first,last+1);
 
-        return response;
+        return trimmedStringResponse;
     }
 
 }
