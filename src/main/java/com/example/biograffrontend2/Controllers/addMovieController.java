@@ -77,7 +77,17 @@ public class addMovieController {
 
     @FXML
     public ObservableList<Schedule> populateTable(){
+
         ObservableList<Schedule> table = FXCollections.observableArrayList();
+
+        /*ConnectionManager cm = new ConnectionManager();
+        response = cm.sendGetRequest("addMovie/?movie_name=" + tfName.getText() + "&movie_datetime=" + tfTime.getText() + "&theater_id_order=" + tfTheater.getText());
+
+        String response2;
+        response2 = cm.sendGetRequest("returnMovieSchema/?Moviename=" + tfName.getText());
+        //parseMovies(response2);
+        System.out.println(response2);*/
+
 
         Schedule brokebackmountain = new Schedule("BrokebackMountain", "null", "null");
         Schedule spiderman = new Schedule("Spiderman", "null", "null");
