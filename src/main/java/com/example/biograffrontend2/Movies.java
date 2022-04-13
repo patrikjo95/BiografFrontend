@@ -1,18 +1,18 @@
 package com.example.biograffrontend2;
 
 public class Movies {
-    private int id;
-    private int theaterId;
-    private String moviename;
-    private String dateTime;
-    private String seatsAvailable;
+    public int id;
+    public int theaterId;
+    public String moviename;
+    public String dateTime;
+    public String seatsAvailable;
 
     public Movies(int id, int theaterId, String moviename, String dateTime) {
         this.id = id;
         this.moviename = moviename;
         this.dateTime = dateTime;
         this.theaterId = theaterId;
-        this.seatsAvailable = seatsAvailable;
+
 
 
 

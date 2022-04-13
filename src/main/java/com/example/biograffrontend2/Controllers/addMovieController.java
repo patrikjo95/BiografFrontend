@@ -2,7 +2,9 @@ package com.example.biograffrontend2.Controllers;
 
 import com.example.biograffrontend2.Application;
 import com.example.biograffrontend2.ConnectionManager;
+import com.example.biograffrontend2.Movies;
 import com.example.biograffrontend2.Schedule;
+import com.google.gson.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,8 +16,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-
 import java.io.IOException;
+import java.util.Arrays;
 
 public class addMovieController {
     @FXML
@@ -36,10 +38,9 @@ public class addMovieController {
     private TextField tfTime;
     @FXML
     private TextField tfTheater;
-    @FXML
-    private TextField tfSeats;
 
     public String response;
+
 
     @FXML
     protected void populateTextField() {
@@ -47,26 +48,25 @@ public class addMovieController {
             tfName.setText(tableView.getSelectionModel().getSelectedItem().getA());
             tfTime.setText(tableView.getSelectionModel().getSelectedItem().getB());
             tfTheater.setText(tableView.getSelectionModel().getSelectedItem().getC());
-            tfSeats.setText(tableView.getSelectionModel().getSelectedItem().getD());
+
         }
         catch (NullPointerException npe) {
         }
     }
 
     private void clearColums() {
-        showTable();
+        //showTable();
         tfName.clear();
         tfTime.clear();
         tfTheater.clear();
-        tfSeats.clear();
     }
-
 
 
     @FXML
     protected void addMovieBackButtonClicked(ActionEvent event)throws IOException {
         Application m = new Application();
         m.changeScene("adminSchema.fxml");
+
     }
 
     @FXML
@@ -79,11 +79,16 @@ public class addMovieController {
     public ObservableList<Schedule> populateTable(){
         ObservableList<Schedule> table = FXCollections.observableArrayList();
 
-        Schedule schedule;
-        schedule = new Schedule("A", "B", "C", "D");
-        Schedule schedule1 = new Schedule("Hej", "ost", "röv", "kiss");
-        table.add(schedule);
-        table.add(schedule1);
+        Schedule brokebackmountain = new Schedule("BrokebackMountain", "null", "null");
+        Schedule spiderman = new Schedule("Spiderman", "null", "null");
+        Schedule theGentlemen = new Schedule("TheGentlemen", "null", "null");
+        Schedule snatch = new Schedule("Snatch", "null", "null");
+
+        table.add(brokebackmountain);
+        table.add(spiderman);
+        table.add(theGentlemen);
+        table.add(snatch);
+
 
         return table;
 
@@ -91,12 +96,12 @@ public class addMovieController {
 
     @FXML
     public void showTable(){
+
         ObservableList<Schedule> list = populateTable();
 
         movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("a"));
         movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("b"));
         movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("c"));
-        seatsAvailableColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("d"));
 
         tableView.setItems(list);
 
@@ -104,27 +109,49 @@ public class addMovieController {
 
     @FXML
     protected void refreshButton(ActionEvent event) throws IOException {
-
         showTable();
+
 
     }
 
     @FXML
     protected void addButton(ActionEvent event) throws IOException {
         Platform.runLater(()->{
+            ObservableList<Schedule> table = FXCollections.observableArrayList();
 
-        ConnectionManager cm = new ConnectionManager();
+            ConnectionManager cm = new ConnectionManager();
 
+            Gson gson = new Gson();
         response = cm.sendGetRequest("addMovie/?movie_name=" + tfName.getText() + "&movie_datetime=" + tfTime.getText() + "&theater_id_order=" + tfTheater.getText());
-        ObservableList<Schedule> table = FXCollections.observableArrayList();
 
-        System.out.println(response);
-        Schedule schedule2 = new Schedule(tfName.getText(), tfTime.getText(), tfTheater.getText(), tfSeats.getText());
+        String response2;
+        response2 = cm.sendGetRequest("returnMovieSchema/?Moviename=" + tfName.getText());
 
-        table.add(schedule2);
+        parseMovies(response2);
+        System.out.println(response2);
+
+        String trimmedResponse = trimResponse(response2);
+
+        System.out.println("trimmed version: "+response2);
+
+        Movies[] movieArray = gson.fromJson(trimmedResponse, Movies[].class);
+        System.out.println("movieArray: " + movieArray[1]);
+        System.out.println(Arrays.toString(movieArray));
+
+        //System.out.println(response);
+
+
+        /*Schedule schedule = new Schedule(tfName.getText(), tfTime.getText(), tfTheater.getText());
+
+        table.add(schedule);*/
+
+        // Vi ska inte lägga in nåt i table.add(schedule); utan det användaren skriver in ska direkt in i
+            // databasen. Sen när metode
 
         clearColums();
         showTable();
+
+
         });
 
     }
@@ -132,10 +159,39 @@ public class addMovieController {
     @FXML
     protected void deleteButton(ActionEvent event) throws IOException {
 
-
-
         clearColums();
         showTable();
     }
 
+    public void parseMovies(String moviesAsString){
+        Gson gson = new Gson();
+
+        Movies movies = gson.fromJson(moviesAsString, Movies.class);
+
+        ObservableList<Schedule> table = FXCollections.observableArrayList();
+
+        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMoviename()));
+        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getDateTime()));
+        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(String.valueOf(movies.getTheaterId())));
+        seatsAvailableColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getSeatsAvailable()));
+
+    }
+
+    public String trimResponse(String response){
+        int first = 0;
+        int last = 0;
+        for(int i = 0; i<response.length();i++){
+            if(response.charAt(i) == '['){
+                first = i;
+            }
+            if(response.charAt(i) == ']'){
+                last = i;
+            }
+        }
+        response = response.substring(first,last+1);
+
+        return response;
+    }
+
 }
+

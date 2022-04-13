@@ -7,7 +7,14 @@ public class Schedule {
     private String c;
     private String d;
 
-    public Schedule(String a, String b, String c, String d) {
+    public Schedule(String a, String b, String c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+
+    }
+
+    public Schedule(String a, String b, String c, String d){
         this.a = a;
         this.b = b;
         this.c = c;
@@ -38,13 +45,6 @@ public class Schedule {
         this.c = c;
     }
 
-    public String getD() {
-        return d;
-    }
-
-    public void setD(String d) {
-        this.d = d;
-    }
 
     @Override
     public String toString() {
@@ -52,7 +52,6 @@ public class Schedule {
                 "a='" + a + '\'' +
                 ", b='" + b + '\'' +
                 ", c='" + c + '\'' +
-                ", d='" + d + '\'' +
                 '}';
     }
 }

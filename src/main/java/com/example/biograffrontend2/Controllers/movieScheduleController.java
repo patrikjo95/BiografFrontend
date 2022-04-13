@@ -57,6 +57,7 @@ public class movieScheduleController {
     protected void refreshButtonClicked(ActionEvent event) throws IOException {
 
 
+
         showTable();
 
     }
@@ -77,9 +78,8 @@ public class movieScheduleController {
         ObservableList<Schedule> table = FXCollections.observableArrayList();
 
         Schedule schedule;
-        schedule = new Schedule("A", "B", "C", "D");
+        schedule = new Schedule("A", "B", "C");
         table.add(schedule);
-
 
         return table;
     }
