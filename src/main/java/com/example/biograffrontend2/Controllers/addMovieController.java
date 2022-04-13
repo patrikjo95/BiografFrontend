@@ -128,7 +128,7 @@ public class addMovieController {
             System.out.println("trimmed version: " + trimmedResponse);
 
             Movies[] movieArray = gson.fromJson(trimmedResponse, Movies[].class);
-            System.out.println("movieArray: " + movieArray[0]);
+            //System.out.println("movieArray: " + movieArray[0]);
             System.out.println(Arrays.toString(movieArray));
 
 
