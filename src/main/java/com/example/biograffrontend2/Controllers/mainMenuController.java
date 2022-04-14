@@ -73,7 +73,8 @@ public class mainMenuController {
                     ConnectionManager cm = new ConnectionManager();
 
                     response = cm.sendGetRequest("return_movie_schema/?pick_movie_name=" + Moviename);
-                    parseMovies(response);
+                    //parseMovies(response);
+                    System.out.println(currentImage);
                     //System.out.println(response);
 
                 });
@@ -84,17 +85,17 @@ public class mainMenuController {
 
                     ConnectionManager cm = new ConnectionManager();
 
-                    String response = cm.sendGetRequest("return_movie_schema/?pick_movie_name=" + Moviename);
+                    response = cm.sendGetRequest("return_movie_schema/?pick_movie_name=" + Moviename);
 
                     //parseMovies(response);
-
-                    System.out.println(response);
+                    System.out.println(currentImage);
+                    //System.out.println(response);
                 });
 
             }if(currentImage.getId().equals("snatchImage")){
-                System.out.println("Snatch");
+                System.out.println(currentImage);
             }if(currentImage.getId().equals("theGentlemenImage")){
-                System.out.println("The Gentlemen");
+                System.out.println(currentImage);
             }
             try {
                 Application m = new Application();
@@ -107,17 +108,7 @@ public class mainMenuController {
         });
 
     }
-    public void parseMovies(String moviesAsString){
-        Gson gson = new Gson();
 
-        Movies movies = gson.fromJson(moviesAsString, Movies.class);
-
-        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMovie_name()));
-        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMovie_datetime()));
-        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(String.valueOf(movies.getTheater_id())));
-        seatsAvailableColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getSeats_avalible()));
-
-    }
 
     @FXML
     protected void movieMouseEnteredEvent(MouseEvent event) {
@@ -132,7 +123,6 @@ public class mainMenuController {
     // Förse tabellen med värden:
 
 
-
     @FXML
     protected void movieMouseExitedEvent(MouseEvent event) {
         ColorAdjust colorAdjust = new ColorAdjust();
@@ -143,49 +133,16 @@ public class mainMenuController {
     }
 
 
-    @FXML
-    public static void addTextLimiter(final TextField tf, final int maxLength) {
-        Platform.runLater(()->{
+/*    public void parseMovies(String moviesAsString){
+        Gson gson = new Gson();
 
-        tf.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
-                if (tf.getText().length() > maxLength) {
-                    String s = tf.getText().substring(0, maxLength);
-                    tf.setText(s);
-                }
-            }
-        });
-        });
-    }
+        Movies movies = gson.fromJson(moviesAsString, Movies.class);
 
-/*    @FXML
-    public ObservableList<Schedule> getBooksList(){
-        ObservableList<Schedule> bookList = FXCollections.observableArrayList();
+        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMovie_name()));
+        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMovie_datetime()));
+        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(String.valueOf(movies.getTheater_id())));
+        seatsAvailableColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getSeats_avalible()));
 
-        Schedule books;
-        books = new Schedule("A", "B", "C", "D");
-        bookList.add(books);
-        Schedule cooks;
-        cooks = new Schedule("E", "F", "G", "H");
-        bookList.add(cooks);
-        System.out.println(bookList);
-
-        return bookList;
-    }
-    @FXML
-    public void showBooks(){
-
-        System.out.println("Hej");
-        ObservableList<Schedule> list = getBooksList();
-        System.out.println(list.toString());
-
-                alo.setCellValueFactory(new PropertyValueFactory<Schedule, String>("a"));
-                b.setCellValueFactory(new PropertyValueFactory<Schedule, String>("b"));
-                c.setCellValueFactory(new PropertyValueFactory<Schedule, String>("c"));
-                d.setCellValueFactory(new PropertyValueFactory<Schedule, String>("d"));
-
-                kuk.setItems(list);
     }*/
 
 

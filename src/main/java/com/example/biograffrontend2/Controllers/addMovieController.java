@@ -38,6 +38,8 @@ public class addMovieController {
     private TextField tfTheater;
 
     public String response;
+    public ObservableList<Schedule> table = FXCollections.observableArrayList();
+
 
 
     @FXML
@@ -77,10 +79,10 @@ public class addMovieController {
     public ObservableList<Schedule> populateTable(){
         ObservableList<Schedule> table = FXCollections.observableArrayList();
 
-        Schedule brokebackmountain = new Schedule("BrokebackMountain", "null", "null");
-        Schedule spiderman = new Schedule("Spiderman", "null", "null");
-        Schedule theGentlemen = new Schedule("TheGentlemen", "null", "null");
-        Schedule snatch = new Schedule("Snatch", "null", "null");
+        Schedule brokebackmountain = new Schedule("BrokebackMountain", "", "");
+        Schedule spiderman = new Schedule("Spiderman", "", "");
+        Schedule theGentlemen = new Schedule("TheGentlemen", "", "");
+        Schedule snatch = new Schedule("Snatch", "", "");
 
         table.add(brokebackmountain);
         table.add(spiderman);
@@ -107,7 +109,6 @@ public class addMovieController {
     protected void refreshButton(ActionEvent event) throws IOException {
         showTable();
 
-
     }
 
     @FXML
@@ -128,9 +129,15 @@ public class addMovieController {
             System.out.println("trimmed version: " + trimmedResponse);
 
             Movies[] movieArray = gson.fromJson(trimmedResponse, Movies[].class);
-            //System.out.println("movieArray: " + movieArray[0]);
+            System.out.println("movieArray: " + movieArray[0]);
             System.out.println(Arrays.toString(movieArray));
 
+            for(int i = 0; i < movieArray.length; i++){
+                Schedule index;
+
+
+
+            }
 
             clearColums();
             showTable();

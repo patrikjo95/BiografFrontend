@@ -58,12 +58,12 @@ public class createAdminController {
                     if (response.contains("number")) {
                         adminLoginErrorLabel.setText("Incorrect phone number");
                         adminLoginErrorLabel.setVisible(true);
-                        System.out.println("Fel telefonnummer");
+                        //System.out.println("Fel telefonnummer");
 
                     } else if (response.contains("username")) {
                         adminLoginErrorLabel.setText("That user already exists");
                         adminLoginErrorLabel.setVisible(true);
-                        System.out.println("duplicate username");
+                        //System.out.println("duplicate username");
 
                     } else if (response.contains("password")) {
                         adminLoginErrorLabel.setText("Incorrect password, must be 8 characters long");
@@ -74,7 +74,6 @@ public class createAdminController {
                         Application m = new Application();
                         try {
                             m.changeScene("adminSchema.fxml");
-
                             //loginUserLabel.setText("Inloggad som: " + userNameField.getText());
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -83,7 +82,7 @@ public class createAdminController {
 
                 } else {
                     adminLoginErrorLabel.setVisible(true);
-                    adminLoginErrorLabel.setText("Incorrect password, please try again.");
+                    adminLoginErrorLabel.setText("Passwords does not match, please try again.");
                 }
 
         });

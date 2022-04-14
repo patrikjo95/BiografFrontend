@@ -87,7 +87,6 @@ public class movieScheduleController {
         movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("a"));
         movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("b"));
         movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("c"));
-        seatsAvailableColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>("d"));
         tableView.setItems(list);
 
     }

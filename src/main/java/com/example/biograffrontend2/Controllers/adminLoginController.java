@@ -27,7 +27,7 @@ public class adminLoginController {
 
     @FXML
     protected void loginButtonClicked(ActionEvent event) throws IOException {
-        /*Platform.runLater(() -> {
+        Platform.runLater(() -> {
             ConnectionManager cm = new ConnectionManager();
             String username = userNameField.getText();
             String password = passwordField.getText();
@@ -50,9 +50,7 @@ public class adminLoginController {
             }
 
 
-        });*/
-            Application m = new Application();
-            m.changeScene("adminSchema.fxml");
+        });
 
 
 
