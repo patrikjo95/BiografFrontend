@@ -38,6 +38,12 @@ public class createAdminController {
         m.changeScene("adminSchema.fxml");
     }
 
+
+    /**
+     * tar input från textfields och skickar till backend,
+     * Svaret som kommer tillbaka i response kontrolleras då för felhantering.
+     * @param event
+     */
     @FXML
     private void createAdminButtonClicked(ActionEvent event){
         Platform.runLater(() -> {

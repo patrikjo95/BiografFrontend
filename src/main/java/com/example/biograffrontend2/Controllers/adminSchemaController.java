@@ -40,6 +40,11 @@ public class adminSchemaController {
 
     }
 
+
+    /**
+     * denna metod skall ta schemat från databas och populera rätt datumrutor i datePicker genom att lägga in dessa i listan exempelDagar.
+     * fungerar ej ännu.
+     */
     @FXML
     private void getDate() {
         Platform.runLater(()->{

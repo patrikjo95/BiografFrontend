@@ -26,6 +26,11 @@ public class Application extends javafx.application.Application {
 
     }
 
+    /**
+     * metod för att byta fönster samt stänga ned det föregående
+     * @param fxml
+     * @throws IOException
+     */
     public void changeScene(String fxml) throws IOException {
         Parent pane = FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource(fxml)));
         newStage.getScene().setRoot(pane);

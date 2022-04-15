@@ -59,7 +59,11 @@ public class mainMenuController {
 
     }
 
-
+    /**
+     * Metoden kontrollerar vilken film som klickas på, detta skall då sparas och i movieScheduleController så skall tableview uppdateras därefter.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     protected void movieButtonClicked(MouseEvent event) throws IOException {
         Platform.runLater(()->{
@@ -110,6 +114,10 @@ public class mainMenuController {
     }
 
 
+    /**
+     * Ändrar effect på den film-knapp som muspekaren äntrar
+     * @param event
+     */
     @FXML
     protected void movieMouseEnteredEvent(MouseEvent event) {
         ColorAdjust colorAdjust = new ColorAdjust();
@@ -120,9 +128,10 @@ public class mainMenuController {
     }
 
 
-    // Förse tabellen med värden:
-
-
+    /**
+     * Tar bort effect när muspekaren lämnar film-knappen
+     * @param event
+     */
     @FXML
     protected void movieMouseExitedEvent(MouseEvent event) {
         ColorAdjust colorAdjust = new ColorAdjust();
@@ -131,19 +140,6 @@ public class mainMenuController {
         currentImage.setEffect(colorAdjust);
 
     }
-
-
-/*    public void parseMovies(String moviesAsString){
-        Gson gson = new Gson();
-
-        Movies movies = gson.fromJson(moviesAsString, Movies.class);
-
-        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMovie_name()));
-        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMovie_datetime()));
-        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(String.valueOf(movies.getTheater_id())));
-        seatsAvailableColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getSeats_avalible()));
-
-    }*/
 
 
 }

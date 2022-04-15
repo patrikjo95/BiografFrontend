@@ -9,6 +9,12 @@ import java.net.URL;
 public class ConnectionManager {
 
 
+    /**
+     * GET-request som används då för att prata med backend,
+     * används då vi vill ha ett response från backend.
+     * @param request
+     * @return
+     */
     public String sendGetRequest(String request) {
 
         String responseString = "";

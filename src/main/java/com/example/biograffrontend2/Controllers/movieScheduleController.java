@@ -53,21 +53,10 @@ public class movieScheduleController {
     protected void refreshButtonClicked(ActionEvent event) throws IOException {
 
 
-
         showTable();
 
     }
-    public void parseMovies(String moviesAsString){
-        Gson gson = new Gson();
 
-        Movies movies = gson.fromJson(moviesAsString, Movies.class);
-
-        movieNameColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMovie_name()));
-        movieTimeColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getMovie_datetime()));
-        movieTheaterColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(String.valueOf(movies.getTheater_id())));
-        seatsAvailableColumn.setCellValueFactory(new PropertyValueFactory<Schedule, String>(movies.getSeats_avalible()));
-
-    }
 
     @FXML
     public ObservableList<Schedule> populateTable(){
@@ -79,6 +68,10 @@ public class movieScheduleController {
 
         return table;
     }
+
+    /**
+     * skall ta värden från vilken film-knapp man klickade på och lägga in i tableview
+     */
     @FXML
     public void showTable(){
         ObservableList<Schedule> list = populateTable();

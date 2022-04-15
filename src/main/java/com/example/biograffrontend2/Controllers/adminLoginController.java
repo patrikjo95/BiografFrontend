@@ -24,7 +24,12 @@ public class adminLoginController {
     public String tom = "@tom";
 
 
-
+    /**
+     * Tar input från userNameField och passwordField och skickar till backend för att kontrollera mot databasen,
+     * response kontrolleras då för felhantering.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     protected void loginButtonClicked(ActionEvent event) throws IOException {
         Platform.runLater(() -> {
@@ -51,34 +56,6 @@ public class adminLoginController {
 
 
         });
-
-
-
-            /*exempelDagar = FXCollections.observableArrayList();
-
-            exempelDagar.add(LocalDate.of(2022, Month.MARCH, 30));
-            exempelDagar.add(LocalDate.of(2022, Month.MARCH, 29));
-            exempelDagar.add(LocalDate.of(2022, Month.MARCH, 28));
-            exempelDagar.add(LocalDate.of(2022, Month.APRIL, 1));
-
-
-            datePicker.setDayCellFactory(new Callback<>() {
-                @Override
-                public DateCell call(DatePicker param) {
-                    return new DateCell() {
-                        @Override
-                        public void updateItem(LocalDate item, boolean empty) {
-                            super.updateItem(item, empty);
-
-                            if (!empty && item != null) {
-                                if (exempelDagar.contains(item)) {
-                                    this.setStyle("-fx-background-color: pink");
-                                }
-                            }
-                        }
-                    };
-                }
-            });*/
 
     }
 

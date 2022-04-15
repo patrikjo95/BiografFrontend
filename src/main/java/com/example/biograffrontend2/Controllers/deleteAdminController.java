@@ -24,7 +24,11 @@ public class deleteAdminController {
     private String response;
     private final String tom = "@tom";
 
-
+    /**
+     * tar input från userNameField samt passwordField för att skicka till backend,
+     * därefter kontrolleras svaret och felhanteras därefter.
+     * @param event
+     */
     @FXML
     public void deleteAdminButtonClicked(ActionEvent event){
         Platform.runLater(() -> {

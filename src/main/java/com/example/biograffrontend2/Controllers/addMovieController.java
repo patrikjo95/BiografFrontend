@@ -41,13 +41,14 @@ public class addMovieController {
     public ObservableList<Schedule> table = FXCollections.observableArrayList();
 
 
-
+    /**
+     *Sätter tfName till den valda filmen i tabellen, detta textfield är ej redigerbart.
+     */
     @FXML
     protected void populateTextField() {
         try {
             tfName.setText(tableView.getSelectionModel().getSelectedItem().getA());
-            tfTime.setText(tableView.getSelectionModel().getSelectedItem().getB());
-            tfTheater.setText(tableView.getSelectionModel().getSelectedItem().getC());
+
 
         }
         catch (NullPointerException npe) {
@@ -75,6 +76,10 @@ public class addMovieController {
 
     }
 
+    /**
+     * populerar tableview med försatta värden med de filmer vi har i vår databas.
+     * @return
+     */
     @FXML
     public ObservableList<Schedule> populateTable(){
         ObservableList<Schedule> table = FXCollections.observableArrayList();
@@ -111,6 +116,11 @@ public class addMovieController {
 
     }
 
+    /**
+     * tar input från textfields och skickar till backend för att lägga till film i databasen.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     protected void addButton(ActionEvent event) throws IOException {
         Platform.runLater(()->{
@@ -154,7 +164,11 @@ public class addMovieController {
     }
 
 
-
+    /**
+     * trimmar ner våran json-response så att resultset texten inte finns framför och bakom själva strängen.
+     * @param response
+     * @return
+     */
     public String trimResponse(String response){
         int first = 0;
         int last = 0;
